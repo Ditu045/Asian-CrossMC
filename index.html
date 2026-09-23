@@ -817,25 +817,25 @@ footer{
 
 const TIER_POINTS = {
 
-  HT1:1000,
-  MT1:950,
-  LT1:900,
+  HT1:150,
+  MT1:140,
+  LT1:130,
 
-  HT2:850,
-  MT2:800,
-  LT2:750,
+  HT2:120,
+  MT2:110,
+  LT2:100,
 
-  HT3:700,
-  MT3:650,
-  LT3:600,
+  HT3:90,
+  MT3:80,
+  LT3:70,
 
-  HT4:550,
-  MT4:500,
-  LT4:450,
+  HT4:60,
+  MT4:50,
+  LT4:40,
 
-  HT5:400,
-  MT5:350,
-  LT5:300
+  HT5:30,
+  MT5:20,
+  LT5:10
 
 };
 
@@ -847,12 +847,12 @@ const TIER_POINTS = {
 function getCombatRank(points){
 
   /*
-    Below 1200:
+    Below 180:
     Return nothing.
     We do NOT display "Unranked".
   */
 
-  if(points < 1200)
+  if(points < 180)
     return null;
 
 
@@ -860,7 +860,7 @@ function getCombatRank(points){
      COMBAT ACE
   ========================= */
 
-  if(points <= 2100){
+  if(points < 280){
 
     return {
       name:"COMBAT ACE I",
@@ -869,7 +869,7 @@ function getCombatRank(points){
 
   }
 
-  if(points <= 3000){
+  if(points < 380){
 
     return {
       name:"COMBAT ACE II",
@@ -878,10 +878,19 @@ function getCombatRank(points){
 
   }
 
-  if(points <= 3900){
+  if(points < 480){
 
     return {
       name:"COMBAT ACE III",
+      className:"combat-ace"
+    };
+
+  }
+
+  if(points < 580){
+
+    return {
+      name:"COMBAT ACE IV",
       className:"combat-ace"
     };
 
@@ -892,7 +901,7 @@ function getCombatRank(points){
      COMBAT MASTER
   ========================= */
 
-  if(points <= 4800){
+  if(points < 680){
 
     return {
       name:"COMBAT MASTER I",
@@ -901,7 +910,7 @@ function getCombatRank(points){
 
   }
 
-  if(points <= 5700){
+  if(points < 780){
 
     return {
       name:"COMBAT MASTER II",
@@ -910,10 +919,19 @@ function getCombatRank(points){
 
   }
 
-  if(points <= 6600){
+  if(points < 880){
 
     return {
       name:"COMBAT MASTER III",
+      className:"combat-master"
+    };
+
+  }
+
+  if(points < 980){
+
+    return {
+      name:"COMBAT MASTER IV",
       className:"combat-master"
     };
 
@@ -924,7 +942,7 @@ function getCombatRank(points){
      COMBAT GRANDMASTER
   ========================= */
 
-  if(points <= 7400){
+  if(points < 1080){
 
     return {
       name:"COMBAT GRANDMASTER I",
@@ -933,7 +951,7 @@ function getCombatRank(points){
 
   }
 
-  if(points <= 8200){
+  if(points < 1180){
 
     return {
       name:"COMBAT GRANDMASTER II",
@@ -942,10 +960,19 @@ function getCombatRank(points){
 
   }
 
-  if(points < 9000){
+  if(points < 1280){
 
     return {
       name:"COMBAT GRANDMASTER III",
+      className:"combat-grandmaster"
+    };
+
+  }
+
+  if(points < 1350){
+
+    return {
+      name:"COMBAT GRANDMASTER IV",
       className:"combat-grandmaster"
     };
 
@@ -956,7 +983,7 @@ function getCombatRank(points){
      THE APEX
   ========================= */
 
-  if(points <= 10000){
+  if(points >= 1350){
 
     return {
       name:"THE APEX",
@@ -1879,4 +1906,4 @@ loadPlayers();
 </script>
 
 </body>
-</html>
+  </html>
