@@ -12,20 +12,64 @@ html{scroll-behavior:smooth}
 body{
   margin:0;
   background:
-    radial-gradient(circle at 0% 0%,rgba(50,110,255,.25),transparent 36%),
-    radial-gradient(circle at 100% 0%,rgba(155,92,255,.27),transparent 36%),
-    radial-gradient(circle at 0% 100%,rgba(155,92,255,.20),transparent 38%),
-    radial-gradient(circle at 100% 100%,rgba(40,120,255,.20),transparent 38%),
-    #050505;
+    radial-gradient(ellipse at 0% 0%,rgba(0,210,255,.19),transparent 35%),
+    radial-gradient(ellipse at 100% 0%,rgba(0,100,255,.19),transparent 35%),
+    radial-gradient(ellipse at 0% 100%,rgba(0,190,255,.13),transparent 38%),
+    radial-gradient(ellipse at 100% 100%,rgba(0,110,255,.16),transparent 38%),
+    #05080d;
   background-attachment:fixed;
-  color:#f5f5f5;
+  color:#f5faff;
   font-family:Arial,Helvetica,sans-serif;
+}
+
+/* CYAN BLUE CORNER GLOW */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(circle at 0% 0%,rgba(0,220,255,.13),transparent 25%),
+    radial-gradient(circle at 100% 0%,rgba(0,110,255,.13),transparent 25%),
+    radial-gradient(circle at 0% 100%,rgba(0,190,255,.10),transparent 25%),
+    radial-gradient(circle at 100% 100%,rgba(0,100,255,.12),transparent 25%);
+}
+
+/* FALLING WHITE PARTICLES */
+
+.particles{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:1;
+}
+
+.particle{
+  position:absolute;
+  top:-12px;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 7px 2px rgba(255,255,255,.65);
+  opacity:0;
+  animation:fallingDot linear infinite;
+}
+
+@keyframes fallingDot{
+  0%{transform:translateY(-20px);opacity:0}
+  12%{opacity:.8}
+  85%{opacity:.65}
+  100%{transform:translateY(105vh);opacity:0}
 }
 
 header{
   height:66px;
-  background:rgba(5,5,8,.93);
-  border-bottom:1px solid #30223c;
+  background:rgba(5,8,13,.93);
+  border-bottom:1px solid rgba(0,210,255,.25);
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -34,10 +78,21 @@ header{
   top:0;
   z-index:100;
   backdrop-filter:blur(14px);
+  box-shadow:0 4px 25px rgba(0,170,255,.07);
 }
 
-.logo{font-size:20px;font-weight:900;letter-spacing:.5px}
-.logo span{color:#a45cff;text-shadow:0 0 14px rgba(164,92,255,.45)}
+.logo{
+  display:flex;
+  align-items:center;
+}
+
+.brand-logo{
+  width:190px;
+  height:54px;
+  object-fit:contain;
+  display:block;
+  filter:drop-shadow(0 0 10px rgba(0,200,255,.35));
+}
 
 .header-buttons{display:flex;gap:8px;align-items:center}
 
@@ -47,36 +102,58 @@ header{
   font-weight:800;
   padding:9px 13px;
   border-radius:9px;
-  border:1px solid #34253f;
-  background:#141018;
+  border:1px solid rgba(0,190,255,.22);
+  background:#101923;
   transition:.2s;
 }
 
 .header-btn:hover{
   transform:translateY(-1px);
-  border-color:#9b5cff;
-  box-shadow:0 0 15px rgba(155,92,255,.2);
+  border-color:#00d9ff;
+  box-shadow:0 0 15px rgba(0,210,255,.2);
 }
 
 .discord-btn{
-  background:linear-gradient(135deg,#5424a5,#7b35d1);
-  border-color:#9658ef;
+  background:linear-gradient(135deg,#075b83,#087fba);
+  border-color:#13bde9;
 }
 
-main{max-width:1150px;margin:auto;padding:35px 20px 70px}
+main{
+  max-width:1150px;
+  margin:auto;
+  padding:35px 20px 70px;
+  position:relative;
+  z-index:2;
+}
 
-.hero{text-align:center;padding:40px 15px 35px}
+.hero{
+  text-align:center;
+  padding:40px 15px 35px;
+}
+
+.hero-logo{
+  width:min(420px,85%);
+  height:auto;
+  object-fit:contain;
+  display:block;
+  margin:0 auto 20px;
+  filter:drop-shadow(0 0 18px rgba(0,200,255,.35));
+}
 
 .hero h1{
   margin:0;
   font-size:clamp(44px,8vw,78px);
   font-weight:950;
   letter-spacing:-3px;
-  text-shadow:0 0 35px rgba(155,92,255,.2);
+  text-shadow:0 0 30px rgba(0,190,255,.2);
 }
 
-.hero h1 span{color:#a45cff}
-.hero p{color:#929292;margin:13px 0 0;font-size:16px}
+.hero h1 span{
+  color:#39dfff;
+  text-shadow:0 0 18px rgba(0,210,255,.3);
+}
+
+.hero p{color:#929eaa;margin:13px 0 0;font-size:16px}
 
 .stats{
   display:grid;
@@ -86,19 +163,23 @@ main{max-width:1150px;margin:auto;padding:35px 20px 70px}
 }
 
 .stat{
-  background:rgba(15,14,19,.9);
-  border:1px solid #2b2333;
+  background:rgba(12,19,27,.9);
+  border:1px solid rgba(0,190,255,.18);
   border-radius:13px;
   padding:20px;
   text-align:center;
   box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
-.stat-value{font-size:28px;font-weight:950;color:#b86cff}
+.stat-value{
+  font-size:28px;
+  font-weight:950;
+  color:#39dfff;
+}
 
 .stat-label{
   margin-top:5px;
-  color:#85818c;
+  color:#858f9a;
   font-size:12px;
   text-transform:uppercase;
   letter-spacing:.7px;
@@ -113,9 +194,9 @@ main{max-width:1150px;margin:auto;padding:35px 20px 70px}
 
 input,select{
   width:100%;
-  background:#101016;
+  background:#0c141d;
   color:#eee;
-  border:1px solid #30253b;
+  border:1px solid rgba(0,190,255,.2);
   border-radius:10px;
   padding:15px;
   font-size:15px;
@@ -123,8 +204,8 @@ input,select{
 }
 
 input:focus,select:focus{
-  border-color:#9b5cff;
-  box-shadow:0 0 0 2px rgba(155,92,255,.09);
+  border-color:#00d9ff;
+  box-shadow:0 0 0 2px rgba(0,210,255,.09);
 }
 
 .section-title{
@@ -143,8 +224,8 @@ input:focus,select:focus{
 
 .podium-card{
   position:relative;
-  background:rgba(15,14,19,.94);
-  border:1px solid #33283d;
+  background:rgba(12,19,27,.94);
+  border:1px solid rgba(0,190,255,.2);
   border-radius:15px;
   padding:22px 15px;
   text-align:center;
@@ -157,22 +238,19 @@ input:focus,select:focus{
 
 .podium-card.first{
   padding-top:30px;
-  border-color:#8d67ff;
-  box-shadow:0 0 30px rgba(155,92,255,.14);
+  border-color:#00cfff;
+  box-shadow:0 0 30px rgba(0,190,255,.12);
 }
 
 .podium-card.second{border-color:#686879}
 .podium-card.third{border-color:#874d35}
 
 .medal{font-size:30px}
-.podium-rank{color:#85818c;font-size:12px;font-weight:900;margin-top:5px}
+.podium-rank{color:#858f9a;font-size:12px;font-weight:900;margin-top:5px}
 .podium-name{font-size:20px;font-weight:950;margin:8px 0 3px;word-break:break-word}
-.podium-points{color:#b86cff;font-weight:900;margin-top:9px}
+.podium-points{color:#39dfff;font-weight:900;margin-top:9px}
 
-
-/* =====================================================
-   COMBAT TITLES
-===================================================== */
+/* COMBAT TITLES */
 
 .combat-title{
   display:block;
@@ -184,18 +262,12 @@ input:focus,select:focus{
   line-height:1.2;
 }
 
-
-/* COMBAT ACE */
-
 .combat-ace{
   color:#55d9ff;
   text-shadow:
     0 0 5px rgba(85,217,255,.8),
     0 0 12px rgba(85,217,255,.45);
 }
-
-
-/* COMBAT MASTER */
 
 .combat-master{
   color:#bd78ff;
@@ -205,9 +277,6 @@ input:focus,select:focus{
     0 0 22px rgba(155,92,255,.25);
 }
 
-
-/* COMBAT GRANDMASTER */
-
 .combat-grandmaster{
   color:#ffd65a;
   text-shadow:
@@ -215,9 +284,6 @@ input:focus,select:focus{
     0 0 13px rgba(255,180,40,.65),
     0 0 25px rgba(255,160,20,.3);
 }
-
-
-/* THE APEX */
 
 .combat-apex{
   color:#ffffff;
@@ -239,7 +305,6 @@ input:focus,select:focus{
       0 0 10px #ffd75a,
       0 0 18px #ffb300;
   }
-
   to{
     filter:brightness(1.3);
     text-shadow:
@@ -250,14 +315,11 @@ input:focus,select:focus{
   }
 }
 
-
-/* =====================================================
-   LEADERBOARD
-===================================================== */
+/* LEADERBOARD */
 
 .card{
-  background:rgba(13,13,17,.94);
-  border:1px solid #29232f;
+  background:rgba(10,17,25,.94);
+  border:1px solid rgba(0,190,255,.16);
   border-radius:14px;
   overflow:hidden;
   box-shadow:0 10px 35px rgba(0,0,0,.28);
@@ -272,8 +334,8 @@ table{
 }
 
 th{
-  background:#15121a;
-  color:#92959c;
+  background:#101c27;
+  color:#929da8;
   font-size:12px;
   text-transform:uppercase;
   letter-spacing:.7px;
@@ -283,11 +345,11 @@ th{
 
 td{
   padding:15px;
-  border-top:1px solid #252129;
+  border-top:1px solid #202c36;
   vertical-align:middle;
 }
 
-tr:hover td{background:rgba(155,92,255,.035)}
+tr:hover td{background:rgba(0,190,255,.035)}
 .position{color:#777;font-weight:900}
 
 .player-name{
@@ -296,7 +358,7 @@ tr:hover td{background:rgba(155,92,255,.035)}
   transition:.15s;
 }
 
-.player-name:hover{color:#b978ff}
+.player-name:hover{color:#39dfff}
 
 .player-name-wrap{
   display:flex;
@@ -309,10 +371,7 @@ tr:hover td{background:rgba(155,92,255,.035)}
   line-height:1.2;
 }
 
-
-/* =========================
-   MC TIERS ICONS
-========================= */
+/* MC TIERS ICONS */
 
 .mode-list{
   display:flex;
@@ -336,7 +395,7 @@ tr:hover td{background:rgba(155,92,255,.035)}
   border-radius:50%;
   background:
     radial-gradient(circle at 35% 28%,#252531,#111119 65%);
-  border:2px solid #2e2d3c;
+  border:2px solid #2e3b46;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -349,9 +408,9 @@ tr:hover td{background:rgba(155,92,255,.035)}
 
 .mode-item:hover .mode-icon-wrap{
   transform:scale(1.1);
-  border-color:#9b5cff;
+  border-color:#00d9ff;
   box-shadow:
-    0 0 14px rgba(155,92,255,.4),
+    0 0 14px rgba(0,210,255,.3),
     inset 0 0 8px rgba(255,255,255,.04);
 }
 
@@ -367,8 +426,8 @@ tr:hover td{background:rgba(155,92,255,.035)}
   font-weight:950;
   padding:3px 6px;
   border-radius:5px;
-  background:#18151d;
-  border:1px solid #342b3c;
+  background:#181d25;
+  border:1px solid #343b46;
   white-space:nowrap;
 }
 
@@ -415,7 +474,7 @@ tr:hover td{background:rgba(155,92,255,.035)}
 }
 
 .info h3{
-  color:#b978ff;
+  color:#39dfff;
   margin-top:0;
 }
 
@@ -446,8 +505,8 @@ tr:hover td{background:rgba(155,92,255,.035)}
   width:min(650px,100%);
   max-height:90vh;
   overflow-y:auto;
-  background:#0d0c11;
-  border:1px solid #4c3460;
+  background:#0b1119;
+  border:1px solid rgba(0,190,255,.35);
   border-radius:18px;
   padding:25px;
   box-shadow:0 20px 80px rgba(0,0,0,.7);
@@ -458,7 +517,7 @@ tr:hover td{background:rgba(155,92,255,.035)}
   align-items:center;
   justify-content:space-between;
   gap:15px;
-  border-bottom:1px solid #29232f;
+  border-bottom:1px solid #292f38;
   padding-bottom:18px;
   margin-bottom:18px;
 }
@@ -469,7 +528,7 @@ tr:hover td{background:rgba(155,92,255,.035)}
 }
 
 .profile-total{
-  color:#b978ff;
+  color:#39dfff;
   font-weight:900;
   margin-top:5px;
 }
@@ -481,7 +540,7 @@ tr:hover td{background:rgba(155,92,255,.035)}
 
 .close{
   border:0;
-  background:#211923;
+  background:#15232e;
   color:#fff;
   width:38px;
   height:38px;
@@ -497,8 +556,8 @@ tr:hover td{background:rgba(155,92,255,.035)}
 }
 
 .profile-mode{
-  background:#151219;
-  border:1px solid #2b2530;
+  background:#111923;
+  border:1px solid #293641;
   border-radius:11px;
   padding:13px;
   display:flex;
@@ -509,7 +568,7 @@ tr:hover td{background:rgba(155,92,255,.035)}
 .profile-mode .mode-icon-wrap{flex-shrink:0}
 
 .profile-mode-name{
-  color:#85818c;
+  color:#858f9a;
   font-size:11px;
   margin-bottom:4px;
 }
@@ -522,15 +581,25 @@ tr:hover td{background:rgba(155,92,255,.035)}
 
 footer{
   text-align:center;
-  color:#666;
+  color:#71808c;
   padding:25px;
-  border-top:1px solid #17131b;
+  border-top:1px solid rgba(0,190,255,.15);
   font-size:13px;
+  position:relative;
+  z-index:2;
 }
 
 @media(max-width:750px){
-
   header{padding:0 12px}
+
+  .brand-logo{
+    width:145px;
+    height:45px;
+  }
+
+  .hero-logo{
+    width:min(310px,90%);
+  }
 
   .header-btn{
     padding:8px 9px;
@@ -538,7 +607,6 @@ footer{
   }
 
   .stats{grid-template-columns:1fr}
-
   .controls{grid-template-columns:1fr}
 
   .podium{
@@ -547,22 +615,42 @@ footer{
   }
 
   .podium-card.first{order:-1}
-
   .profile-grid{grid-template-columns:1fr}
-
   main{padding:25px 12px 50px}
-
   .hero h1{font-size:47px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .particle{animation:none;display:none}
+  .combat-apex{animation:none}
 }
 </style>
 </head>
 
 <body>
 
+<!-- FALLING WHITE PARTICLES -->
+<div class="particles" aria-hidden="true">
+  <i class="particle" style="left:5%;animation-duration:12s;animation-delay:0s"></i>
+  <i class="particle" style="left:15%;animation-duration:16s;animation-delay:3s"></i>
+  <i class="particle" style="left:25%;animation-duration:13s;animation-delay:6s"></i>
+  <i class="particle" style="left:38%;animation-duration:17s;animation-delay:1s"></i>
+  <i class="particle" style="left:49%;animation-duration:14s;animation-delay:5s"></i>
+  <i class="particle" style="left:61%;animation-duration:18s;animation-delay:2s"></i>
+  <i class="particle" style="left:73%;animation-duration:13s;animation-delay:7s"></i>
+  <i class="particle" style="left:84%;animation-duration:16s;animation-delay:4s"></i>
+  <i class="particle" style="left:94%;animation-duration:15s;animation-delay:8s"></i>
+</div>
+
 <header>
 
   <div class="logo">
-    ASIAN <span>CROSSMC</span>
+    <img
+      src="asian-crossmc-logo.png"
+      class="brand-logo"
+      alt="Asian CrossMC"
+    >
   </div>
 
   <div class="header-buttons">
@@ -590,6 +678,12 @@ footer{
 <main>
 
 <section class="hero">
+
+  <img
+    src="asian-crossmc-logo.png"
+    class="hero-logo"
+    alt="Asian CrossMC"
+  >
 
   <h1>
     ASIAN <span>CROSSMC</span>
@@ -811,9 +905,7 @@ footer{
 
 <script>
 
-/* =========================
-   FIXED POINTS
-========================= */
+/* FIXED POINTS */
 
 const TIER_POINTS = {
 
@@ -840,115 +932,75 @@ const TIER_POINTS = {
 };
 
 
-/* =====================================================
-   COMBAT RANK SYSTEM
-===================================================== */
+/* COMBAT RANK SYSTEM */
 
 function getCombatRank(points){
 
   if(points < 100)
     return null;
 
-
-  /* =========================
-     COMBAT ACE
-  ========================= */
-
   if(points < 200){
-
     return {
       name:"COMBAT ACE I",
       className:"combat-ace"
     };
-
   }
 
   if(points < 300){
-
     return {
       name:"COMBAT ACE II",
       className:"combat-ace"
     };
-
   }
 
   if(points < 500){
-
     return {
       name:"COMBAT ACE III",
       className:"combat-ace"
     };
-
   }
 
-
-  /* =========================
-     COMBAT MASTER
-  ========================= */
-
   if(points < 600){
-
     return {
       name:"COMBAT MASTER I",
       className:"combat-master"
     };
-
   }
 
   if(points < 700){
-
     return {
       name:"COMBAT MASTER II",
       className:"combat-master"
     };
-
   }
 
   if(points < 900){
-
     return {
       name:"COMBAT MASTER III",
       className:"combat-master"
     };
-
   }
 
-
-  /* =========================
-     COMBAT GRANDMASTER
-  ========================= */
-
   if(points < 1000){
-
     return {
       name:"COMBAT GRANDMASTER I",
       className:"combat-grandmaster"
     };
-
   }
 
   if(points < 1100){
-
     return {
       name:"COMBAT GRANDMASTER II",
       className:"combat-grandmaster"
     };
-
   }
 
   if(points < 1350){
-
     return {
       name:"COMBAT GRANDMASTER III",
       className:"combat-grandmaster"
     };
-
   }
-
-
-  /* =========================
-     THE APEX
-  ========================= */
 
   return {
     name:"THE APEX",
@@ -958,19 +1010,15 @@ function getCombatRank(points){
 }
 
 
-/* =========================
-   COMBAT TITLE HTML
-========================= */
+/* COMBAT TITLE HTML */
 
 function combatTitleHTML(points){
 
   const rank =
     getCombatRank(points);
 
-
   if(!rank)
     return "";
-
 
   return `
     <span class="combat-title ${rank.className}">
@@ -981,9 +1029,7 @@ function combatTitleHTML(points){
 }
 
 
-/* =====================================================
-   PHOTO-BASED MC TIERS SVG ICONS
-===================================================== */
+/* PHOTO-BASED MC TIERS SVG ICONS */
 
 const MODE_ICONS = {
 
@@ -1060,16 +1106,12 @@ function svgIcon(mode){
 }
 
 
-/* =========================
-   VARIABLES
-========================= */
+/* VARIABLES */
 
 let players = [];
 
 
-/* =========================
-   SUPABASE
-========================= */
+/* SUPABASE */
 
 const sb =
   window.supabase.createClient(
@@ -1078,9 +1120,7 @@ const sb =
   );
 
 
-/* =========================
-   POINTS
-========================= */
+/* POINTS */
 
 function getPoints(player){
 
@@ -1089,16 +1129,12 @@ function getPoints(player){
 }
 
 
-/* =========================
-   DISPLAY TIER
-========================= */
+/* DISPLAY TIER */
 
 function getDisplayTier(player){
 
   if(player.retired === true){
-
     return `R-${player.tier}`;
-
   }
 
   return player.tier;
@@ -1106,9 +1142,7 @@ function getDisplayTier(player){
 }
 
 
-/* =========================
-   TIER CLASS
-========================= */
+/* TIER CLASS */
 
 function getTierClass(tier){
 
@@ -1132,9 +1166,7 @@ function getTierClass(tier){
 }
 
 
-/* =========================
-   LOAD PLAYERS
-========================= */
+/* LOAD PLAYERS */
 
 async function loadPlayers(){
 
@@ -1144,7 +1176,6 @@ async function loadPlayers(){
   } = await sb
     .from("players")
     .select("name,mode,tier,points,tests,retired");
-
 
   if(error){
 
@@ -1171,7 +1202,6 @@ async function loadPlayers(){
 
   }
 
-
   players =
     (data || []).filter(p =>
       p.name &&
@@ -1179,19 +1209,14 @@ async function loadPlayers(){
       TIER_POINTS[p.tier]
     );
 
-
   updateStats();
-
   renderPodium();
-
   renderLeaderboard();
 
 }
 
 
-/* =========================
-   STATS
-========================= */
+/* STATS */
 
 function updateStats(){
 
@@ -1200,7 +1225,6 @@ function updateStats(){
       players.map(p => p.name)
     ).size;
 
-
   const ht1 =
     new Set(
       players
@@ -1208,12 +1232,10 @@ function updateStats(){
         .map(p => p.name)
     ).size;
 
-
   document
     .getElementById("statPlayers")
     .textContent =
       uniquePlayers;
-
 
   document
     .getElementById("statHT1")
@@ -1223,14 +1245,11 @@ function updateStats(){
 }
 
 
-/* =========================
-   BUILD OVERALL
-========================= */
+/* BUILD OVERALL */
 
 function buildOverall(){
 
   const map = new Map();
-
 
   players.forEach(player => {
 
@@ -1247,17 +1266,13 @@ function buildOverall(){
 
     }
 
-
     const p =
       map.get(player.name);
-
 
     const points =
       getPoints(player);
 
-
     p.total += points;
-
 
     p.modes.push({
 
@@ -1270,7 +1285,6 @@ function buildOverall(){
 
   });
 
-
   return [...map.values()]
     .sort(
       (a,b) =>
@@ -1280,19 +1294,15 @@ function buildOverall(){
 }
 
 
-/* =========================
-   PODIUM
-========================= */
+/* PODIUM */
 
 function renderPodium(){
 
   const container =
     document.getElementById("podium");
 
-
   const top =
     buildOverall().slice(0,3);
-
 
   if(!top.length){
 
@@ -1303,14 +1313,11 @@ function renderPodium(){
 
   }
 
-
   const medals =
     ["🥇","🥈","🥉"];
 
-
   const classes =
     ["first","second","third"];
-
 
   container.innerHTML =
     top.map((p,i)=>`
@@ -1349,9 +1356,7 @@ function renderPodium(){
 }
 
 
-/* =========================
-   CREATE ICONS
-========================= */
+/* CREATE ICONS */
 
 function createModeIcons(modes){
 
@@ -1368,9 +1373,7 @@ function createModeIcons(modes){
       >
 
         <div class="mode-icon-wrap">
-
           ${svgIcon(x.mode)}
-
         </div>
 
         <span
@@ -1391,9 +1394,7 @@ function createModeIcons(modes){
 }
 
 
-/* =========================
-   FILTER
-========================= */
+/* FILTER */
 
 function getFiltered(){
 
@@ -1404,18 +1405,15 @@ function getFiltered(){
       .trim()
       .toLowerCase();
 
-
   const mode =
     document
       .getElementById("mode")
       .value;
 
-
   const tier =
     document
       .getElementById("tierFilter")
       .value;
-
 
   return players.filter(p => {
 
@@ -1425,16 +1423,13 @@ function getFiltered(){
         .toLowerCase()
         .includes(search);
 
-
     const modeOK =
       mode === "ALL" ||
       p.mode === mode;
 
-
     const tierOK =
       tier === "ALL" ||
       p.tier === tier;
-
 
     return (
       searchOK &&
@@ -1447,9 +1442,7 @@ function getFiltered(){
 }
 
 
-/* =========================
-   LEADERBOARD
-========================= */
+/* LEADERBOARD */
 
 function renderLeaderboard(){
 
@@ -1457,18 +1450,15 @@ function renderLeaderboard(){
     document
       .getElementById("leaderboard");
 
-
   const mode =
     document
       .getElementById("mode")
       .value;
 
-
   const tier =
     document
       .getElementById("tierFilter")
       .value;
-
 
   const search =
     document
@@ -1477,12 +1467,10 @@ function renderLeaderboard(){
       .trim()
       .toLowerCase();
 
-
   if(mode === "ALL"){
 
     let overall =
       buildOverall();
-
 
     overall =
       overall.filter(p => {
@@ -1495,7 +1483,6 @@ function renderLeaderboard(){
         )
           return false;
 
-
         if(
           tier !== "ALL" &&
           !p.modes.some(
@@ -1504,11 +1491,9 @@ function renderLeaderboard(){
         )
           return false;
 
-
         return true;
 
       });
-
 
     if(!overall.length){
 
@@ -1531,7 +1516,6 @@ function renderLeaderboard(){
 
     }
 
-
     tbody.innerHTML =
       overall.map((p,i)=>`
 
@@ -1540,7 +1524,6 @@ function renderLeaderboard(){
           <td class="position">
             ${i+1}
           </td>
-
 
           <td
             class="player-name"
@@ -1559,7 +1542,6 @@ function renderLeaderboard(){
 
           </td>
 
-
           <td>
 
             <div class="mode-list">
@@ -1571,7 +1553,6 @@ function renderLeaderboard(){
             </div>
 
           </td>
-
 
           <td class="points">
             ${p.total.toLocaleString()}
@@ -1585,7 +1566,6 @@ function renderLeaderboard(){
 
   }
 
-
   const list =
     getFiltered()
       .sort(
@@ -1593,7 +1573,6 @@ function renderLeaderboard(){
           getPoints(b) -
           getPoints(a)
       );
-
 
   if(!list.length){
 
@@ -1616,7 +1595,6 @@ function renderLeaderboard(){
 
   }
 
-
   tbody.innerHTML =
     list.map((p,i)=>`
 
@@ -1625,7 +1603,6 @@ function renderLeaderboard(){
         <td class="position">
           ${i+1}
         </td>
-
 
         <td
           class="player-name"
@@ -1644,7 +1621,6 @@ function renderLeaderboard(){
 
         </td>
 
-
         <td>
 
           <div class="mode-list">
@@ -1655,9 +1631,7 @@ function renderLeaderboard(){
             >
 
               <div class="mode-icon-wrap">
-
                 ${svgIcon(p.mode)}
-
               </div>
 
               <span
@@ -1676,7 +1650,6 @@ function renderLeaderboard(){
 
         </td>
 
-
         <td class="points">
           ${getPoints(p).toLocaleString()}
         </td>
@@ -1688,25 +1661,20 @@ function renderLeaderboard(){
 }
 
 
-/* =========================
-   PLAYER PROFILE
-========================= */
+/* PLAYER PROFILE */
 
 function openProfile(encodedName){
 
   const name =
     decodeURIComponent(encodedName);
 
-
   const playerModes =
     players.filter(
       p => p.name === name
     );
 
-
   if(!playerModes.length)
     return;
-
 
   const total =
     playerModes.reduce(
@@ -1715,25 +1683,21 @@ function openProfile(encodedName){
       0
     );
 
-
   document
     .getElementById("profileName")
     .textContent =
       name;
-
 
   document
     .getElementById("profileCombat")
     .innerHTML =
       combatTitleHTML(total);
 
-
   document
     .getElementById("profileTotal")
     .textContent =
       total.toLocaleString() +
       " Points";
-
 
   document
     .getElementById("profileGrid")
@@ -1750,9 +1714,7 @@ function openProfile(encodedName){
           <div class="profile-mode">
 
             <div class="mode-icon-wrap">
-
               ${svgIcon(p.mode)}
-
             </div>
 
             <div>
@@ -1780,7 +1742,6 @@ function openProfile(encodedName){
         `)
         .join("");
 
-
   document
     .getElementById("modal")
     .classList.add("show");
@@ -1797,14 +1758,11 @@ function closeProfile(){
 }
 
 
-/* =========================
-   ESCAPE
-========================= */
+/* ESCAPE */
 
 function escapeHTML(value){
 
   return String(value)
-
     .replaceAll("&","&amp;")
     .replaceAll("<","&lt;")
     .replaceAll(">","&gt;")
@@ -1814,9 +1772,7 @@ function escapeHTML(value){
 }
 
 
-/* =========================
-   CONTROLS
-========================= */
+/* CONTROLS */
 
 document
   .getElementById("search")
@@ -1825,14 +1781,12 @@ document
     renderLeaderboard
   );
 
-
 document
   .getElementById("mode")
   .addEventListener(
     "change",
     renderLeaderboard
   );
-
 
 document
   .getElementById("tierFilter")
@@ -1842,9 +1796,7 @@ document
   );
 
 
-/* =========================
-   ESCAPE MODAL
-========================= */
+/* ESCAPE MODAL */
 
 document.addEventListener(
   "keydown",
@@ -1857,9 +1809,7 @@ document.addEventListener(
 );
 
 
-/* =========================
-   START
-========================= */
+/* START */
 
 loadPlayers();
 
