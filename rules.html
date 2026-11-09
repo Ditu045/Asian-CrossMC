@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rules | ASIAN CROSSMC</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 0 0,rgba(0,210,255,.19),transparent 35%),radial-gradient(ellipse at 100% 0,rgba(0,100,255,.19),transparent 35%),radial-gradient(ellipse at 0 100%,rgba(0,190,255,.13),transparent 38%),radial-gradient(ellipse at 100% 100%,rgba(0,110,255,.16),transparent 38%),#05080d;color:#f5faff;font-family:Arial,Helvetica,sans-serif;background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(circle at 0 0,rgba(0,220,255,.13),transparent 25%),radial-gradient(circle at 100% 0,rgba(0,110,255,.13),transparent 25%),radial-gradient(circle at 0 100%,rgba(0,190,255,.10),transparent 25%),radial-gradient(circle at 100% 100%,rgba(0,100,255,.12),transparent 25%)}
+header{height:66px;background:rgba(5,8,13,.93);border-bottom:1px solid rgba(0,210,255,.25);display:flex;align-items:center;gap:14px;padding:0 20px;position:sticky;top:0;z-index:100;backdrop-filter:blur(14px);box-shadow:0 4px 25px rgba(0,170,255,.07)}
+.brand-logo{width:190px;height:54px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(0,200,255,.35))}
+.header-spacer{flex:1}
+.header-buttons{display:flex;gap:8px;align-items:center}
+.header-btn{color:white;text-decoration:none;font-weight:800;padding:9px 13px;border-radius:9px;border:1px solid rgba(0,190,255,.22);background:#101923}
+.discord-btn{background:linear-gradient(135deg,#075b83,#087fba);border-color:#13bde9}
+.menu-button{width:42px;height:42px;border:1px solid rgba(0,190,255,.3);background:#101923;color:#fff;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;flex-shrink:0}
+.menu-button span{height:2px;width:19px;background:#39dfff;border-radius:5px}
+.menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:199;opacity:0;visibility:hidden;transition:.25s}
+.menu-overlay.open{opacity:1;visibility:visible}
+.side-menu{position:fixed;z-index:200;top:0;left:0;width:min(300px,82vw);height:100dvh;padding:22px;background:#09121c;border-right:1px solid rgba(0,210,255,.3);box-shadow:15px 0 45px rgba(0,0,0,.5);transform:translateX(-105%);transition:transform .28s ease}
+.side-menu.open{transform:translateX(0)}
+.menu-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.menu-title{font-size:19px;font-weight:950;color:#39dfff}
+.menu-close{background:#15232e;color:white;border:1px solid #294252;border-radius:8px;width:36px;height:36px;font-size:21px;cursor:pointer}
+.menu-links{display:flex;flex-direction:column;gap:10px}
+.menu-links a{padding:15px;border:1px solid rgba(0,190,255,.17);border-radius:10px;background:#101b26;color:#f5faff;text-decoration:none;font-weight:900;transition:.2s}
+.menu-links a:hover,.menu-links a.active{border-color:#00d9ff;background:#102b39;color:#39dfff;box-shadow:0 0 14px rgba(0,210,255,.12)}
+main{max-width:900px;margin:auto;padding:55px 20px 80px;position:relative;z-index:2}
+.page-heading{text-align:center;margin-bottom:32px}
+.page-heading h1{font-size:clamp(36px,7vw,58px);margin:0;font-weight:950;letter-spacing:-2px}
+.page-heading h1 span{color:#39dfff;text-shadow:0 0 18px rgba(0,210,255,.3)}
+.page-heading p{color:#929eaa}
+.card{background:rgba(10,17,25,.94);border:1px solid rgba(0,190,255,.2);border-radius:16px;padding:28px;box-shadow:0 10px 35px rgba(0,0,0,.28);line-height:1.7}
+.card h2{color:#39dfff;margin:0 0 12px;font-size:23px}
+.card h3{color:#eafaff;margin:22px 0 8px;font-size:17px}
+.card ul{padding-left:23px;margin-top:8px}
+.card li{color:#c5cdd4;margin:10px 0}
+.warning{color:#ff6975;font-weight:950}
+.discord-link{display:inline-block;margin-top:18px;padding:12px 18px;background:linear-gradient(135deg,#075b83,#087fba);border:1px solid #13bde9;border-radius:9px;color:white;text-decoration:none;font-weight:900}
+footer{text-align:center;color:#71808c;padding:25px;border-top:1px solid rgba(0,190,255,.15);font-size:13px;position:relative;z-index:2}
+@media(max-width:750px){header{padding:0 10px;gap:9px}.brand-logo{width:135px;height:45px}.header-btn{padding:8px 9px;font-size:12px}main{padding:35px 13px 60px}.card{padding:20px}}
+@media(max-width:420px){.brand-logo{width:112px}}
+</style>
+</head>
+<body>
+
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+<nav class="side-menu" id="sideMenu" aria-label="Main navigation">
+  <div class="menu-top">
+    <div class="menu-title">ASIAN CROSSMC</div>
+    <button class="menu-close" onclick="closeMenu()" aria-label="Close menu">×</button>
+  </div>
+  <div class="menu-links">
+    <a href="index.html">⌂ &nbsp; Home</a>
+    <a href="rules.html" class="active">☷ &nbsp; Rules</a>
+    <a href="result.html">🏆 &nbsp; Results</a>
+  </div>
+</nav>
+
+<header>
+  <button class="menu-button" onclick="openMenu()" aria-label="Open menu" aria-controls="sideMenu">
+    <span></span><span></span><span></span>
+  </button>
+  <img src="asian-crossmc-logo.png" class="brand-logo" alt="Asian CrossMC">
+  <div class="header-spacer"></div>
+  <div class="header-buttons">
+    <a class="header-btn discord-btn" href="https://discord.gg/D8WakRaEB" target="_blank" rel="noopener noreferrer">💬 Discord</a>
+    <a class="header-btn" href="admin.html">🔐 Admin</a>
+  </div>
+</header>
+
+<main>
+  <div class="page-heading">
+    <h1>TIER TEST <span>RULES</span></h1>
+    <p>Read all rules carefully before requesting a tier test.</p>
+  </div>
+
+  <section class="card">
+    <h2>┃ In Discord</h2>
+    <ul>
+      <li>You must read all test rules before requesting.</li>
+      <li>Provide complete and correct information.</li>
+      <li>Do not ping or annoy testers unnecessarily.</li>
+      <li>You are required to confirm a test time within 12 hours.</li>
+    </ul>
+
+    <h2 style="margin-top:32px">┃ In-Game</h2>
+    <ul>
+      <li>Hacking is strictly prohibited.</li>
+      <li>Illegal clients are not allowed.</li>
+      <li>Follow all tester instructions without question.</li>
+      <li>Do not leave during the test for any reason.</li>
+      <li>Your ping must be under 135ms.</li>
+      <li><span class="warning">KBM strictly BANNED</span></li>
+    </ul>
+
+    <a class="discord-link" href="https://discord.gg/D8WakRaEB" target="_blank" rel="noopener noreferrer">💬 Join our Discord</a>
+  </section>
+</main>
+
+<footer>ASIAN CROSSMC • MCPE Tier Testing</footer>
+
+<script>
+function openMenu(){
+  document.getElementById("sideMenu").classList.add("open");
+  document.getElementById("menuOverlay").classList.add("open");
+}
+function closeMenu(){
+  document.getElementById("sideMenu").classList.remove("open");
+  document.getElementById("menuOverlay").classList.remove("open");
+}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu()});
+</script>
+</body>
+</html>
