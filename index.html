@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,10 +82,7 @@ header{
   box-shadow:0 4px 25px rgba(0,170,255,.07);
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-}
+.logo{display:flex;align-items:center}
 
 .brand-logo{
   width:190px;
@@ -126,10 +124,7 @@ main{
   z-index:2;
 }
 
-.hero{
-  text-align:center;
-  padding:40px 15px 35px;
-}
+.hero{text-align:center;padding:40px 15px 35px}
 
 .hero-logo{
   width:min(420px,85%);
@@ -171,11 +166,7 @@ main{
   box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
-.stat-value{
-  font-size:28px;
-  font-weight:950;
-  color:#39dfff;
-}
+.stat-value{font-size:28px;font-weight:950;color:#39dfff}
 
 .stat-label{
   margin-top:5px;
@@ -208,11 +199,7 @@ input:focus,select:focus{
   box-shadow:0 0 0 2px rgba(0,210,255,.09);
 }
 
-.section-title{
-  font-size:25px;
-  font-weight:950;
-  margin:28px 0 14px;
-}
+.section-title{font-size:25px;font-weight:950;margin:28px 0 14px}
 
 .podium{
   display:grid;
@@ -246,9 +233,83 @@ input:focus,select:focus{
 .podium-card.third{border-color:#874d35}
 
 .medal{font-size:30px}
-.podium-rank{color:#858f9a;font-size:12px;font-weight:900;margin-top:5px}
+
+.podium-rank{
+  color:#858f9a;
+  font-size:12px;
+  font-weight:900;
+  margin-top:5px;
+}
+
 .podium-name{font-size:20px;font-weight:950;margin:8px 0 3px;word-break:break-word}
 .podium-points{color:#39dfff;font-weight:900;margin-top:9px}
+
+/* PLAYER SKINS */
+
+.skin-wrap{
+  width:44px;
+  height:44px;
+  flex:0 0 44px;
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  overflow:hidden;
+  background:linear-gradient(145deg,#172b3a,#0a111a);
+  border:1px solid rgba(0,200,255,.35);
+  box-shadow:0 0 12px rgba(0,190,255,.12);
+}
+
+.skin-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  position:relative;
+  z-index:2;
+}
+
+.skin-fallback{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#39dfff;
+  font-size:15px;
+  font-weight:950;
+  z-index:1;
+}
+
+.skin-wrap.skin-large{
+  width:76px;
+  height:76px;
+  flex-basis:76px;
+  border-radius:14px;
+}
+
+.skin-wrap.skin-profile{
+  width:88px;
+  height:88px;
+  flex-basis:88px;
+  border-radius:16px;
+}
+
+.podium-player{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+
+.podium-player .skin-wrap{
+  width:76px;
+  height:76px;
+  flex-basis:76px;
+}
+
+.podium-player-info{min-width:0}
 
 /* COMBAT TITLES */
 
@@ -264,55 +325,30 @@ input:focus,select:focus{
 
 .combat-ace{
   color:#55d9ff;
-  text-shadow:
-    0 0 5px rgba(85,217,255,.8),
-    0 0 12px rgba(85,217,255,.45);
+  text-shadow:0 0 5px rgba(85,217,255,.8),0 0 12px rgba(85,217,255,.45);
 }
 
 .combat-master{
   color:#bd78ff;
-  text-shadow:
-    0 0 5px rgba(189,120,255,.9),
-    0 0 13px rgba(155,92,255,.6),
-    0 0 22px rgba(155,92,255,.25);
+  text-shadow:0 0 5px rgba(189,120,255,.9),0 0 13px rgba(155,92,255,.6),0 0 22px rgba(155,92,255,.25);
 }
 
 .combat-grandmaster{
   color:#ffd65a;
-  text-shadow:
-    0 0 5px rgba(255,214,90,.95),
-    0 0 13px rgba(255,180,40,.65),
-    0 0 25px rgba(255,160,20,.3);
+  text-shadow:0 0 5px rgba(255,214,90,.95),0 0 13px rgba(255,180,40,.65),0 0 25px rgba(255,160,20,.3);
 }
 
 .combat-apex{
   color:#ffffff;
   font-size:12px;
   letter-spacing:1.2px;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #ffd75a,
-    0 0 18px #ffb300,
-    0 0 30px rgba(255,180,40,.7);
+  text-shadow:0 0 5px #fff,0 0 10px #ffd75a,0 0 18px #ffb300,0 0 30px rgba(255,180,40,.7);
   animation:apexGlow 1.8s ease-in-out infinite alternate;
 }
 
 @keyframes apexGlow{
-  from{
-    filter:brightness(1);
-    text-shadow:
-      0 0 5px #fff,
-      0 0 10px #ffd75a,
-      0 0 18px #ffb300;
-  }
-  to{
-    filter:brightness(1.3);
-    text-shadow:
-      0 0 7px #fff,
-      0 0 14px #ffe48a,
-      0 0 25px #ffb300,
-      0 0 38px rgba(255,170,20,.75);
-  }
+  from{filter:brightness(1);text-shadow:0 0 5px #fff,0 0 10px #ffd75a,0 0 18px #ffb300}
+  to{filter:brightness(1.3);text-shadow:0 0 7px #fff,0 0 14px #ffe48a,0 0 25px #ffb300,0 0 38px rgba(255,170,20,.75)}
 }
 
 /* LEADERBOARD */
@@ -327,11 +363,7 @@ input:focus,select:focus{
 
 .table-wrap{overflow-x:auto}
 
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:700px;
-}
+table{width:100%;border-collapse:collapse;min-width:700px}
 
 th{
   background:#101c27;
@@ -343,42 +375,67 @@ th{
   padding:15px;
 }
 
-td{
-  padding:15px;
-  border-top:1px solid #202c36;
-  vertical-align:middle;
-}
-
+td{padding:15px;border-top:1px solid #202c36;vertical-align:middle}
 tr:hover td{background:rgba(0,190,255,.035)}
-.position{color:#777;font-weight:900}
 
-.player-name{
-  font-weight:900;
-  cursor:pointer;
-  transition:.15s;
+/* SERIAL NUMBER BADGES */
+
+.position{text-align:center;width:76px}
+
+.rank-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:43px;
+  height:34px;
+  padding:0 9px;
+  border-radius:9px;
+  font-size:13px;
+  font-weight:950;
+  font-variant-numeric:tabular-nums;
+  background:linear-gradient(145deg,#142533,#0c1721);
+  color:#55dfff;
+  border:1px solid rgba(0,200,255,.35);
+  box-shadow:0 0 10px rgba(0,190,255,.12);
 }
 
+.rank-first{
+  color:#ffe58a;
+  border-color:#d7a92f;
+  background:linear-gradient(145deg,#493915,#201909);
+  box-shadow:0 0 13px rgba(255,200,50,.23),inset 0 0 8px rgba(255,220,100,.08);
+}
+
+.rank-second{
+  color:#e4e8f0;
+  border-color:#9da8b7;
+  background:linear-gradient(145deg,#303b49,#151c25);
+  box-shadow:0 0 12px rgba(190,205,225,.18);
+}
+
+.rank-third{
+  color:#ffb18b;
+  border-color:#a9613f;
+  background:linear-gradient(145deg,#492819,#21120d);
+  box-shadow:0 0 12px rgba(220,120,70,.18);
+}
+
+.player-name{font-weight:900;cursor:pointer;transition:.15s}
 .player-name:hover{color:#39dfff}
 
 .player-name-wrap{
   display:flex;
-  flex-direction:column;
-  align-items:flex-start;
+  flex-direction:row;
+  align-items:center;
+  gap:11px;
 }
 
-.player-name-text{
-  font-weight:900;
-  line-height:1.2;
-}
+.player-name-details{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.player-name-text{font-weight:900;line-height:1.2;word-break:break-word}
 
 /* MC TIERS ICONS */
 
-.mode-list{
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-  align-items:flex-start;
-}
+.mode-list{display:flex;flex-wrap:wrap;gap:9px;align-items:flex-start}
 
 .mode-item{
   width:58px;
@@ -393,15 +450,12 @@ tr:hover td{background:rgba(0,190,255,.035)}
   width:46px;
   height:46px;
   border-radius:50%;
-  background:
-    radial-gradient(circle at 35% 28%,#252531,#111119 65%);
+  background:radial-gradient(circle at 35% 28%,#252531,#111119 65%);
   border:2px solid #2e3b46;
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:
-    inset 0 0 8px rgba(255,255,255,.025),
-    0 3px 12px rgba(0,0,0,.35);
+  box-shadow:inset 0 0 8px rgba(255,255,255,.025),0 3px 12px rgba(0,0,0,.35);
   transition:.2s;
   overflow:hidden;
 }
@@ -409,17 +463,10 @@ tr:hover td{background:rgba(0,190,255,.035)}
 .mode-item:hover .mode-icon-wrap{
   transform:scale(1.1);
   border-color:#00d9ff;
-  box-shadow:
-    0 0 14px rgba(0,210,255,.3),
-    inset 0 0 8px rgba(255,255,255,.04);
+  box-shadow:0 0 14px rgba(0,210,255,.3),inset 0 0 8px rgba(255,255,255,.04);
 }
 
-.mode-svg{
-  width:34px;
-  height:34px;
-  display:block;
-  object-fit:contain;
-}
+.mode-svg{width:34px;height:34px;display:block;object-fit:contain}
 
 .mode-tier{
   font-size:11px;
@@ -431,61 +478,21 @@ tr:hover td{background:rgba(0,190,255,.035)}
   white-space:nowrap;
 }
 
-.tier-1{
-  color:#ffd84a;
-  border-color:#765d16;
-  background:rgba(255,210,60,.07);
-  box-shadow:0 0 10px rgba(255,210,60,.12);
-}
-
-.tier-2{
-  color:#c078ff;
-  border-color:#69399a;
-  background:rgba(155,92,255,.08);
-  box-shadow:0 0 10px rgba(155,92,255,.14);
-}
-
-.tier-3{
-  color:#55d9ff;
-  border-color:#23657a;
-  background:rgba(50,190,230,.07);
-  box-shadow:0 0 10px rgba(50,190,230,.1);
-}
-
-.tier-4{
-  color:#63e6a4;
-  border-color:#26734d;
-  background:rgba(50,220,130,.07);
-  box-shadow:0 0 10px rgba(50,220,130,.1);
-}
-
-.tier-5{
-  color:#ff6975;
-  border-color:#79323a;
-  background:rgba(255,70,85,.07);
-  box-shadow:0 0 10px rgba(255,70,85,.1);
-}
+.tier-1{color:#ffd84a;border-color:#765d16;background:rgba(255,210,60,.07);box-shadow:0 0 10px rgba(255,210,60,.12)}
+.tier-2{color:#c078ff;border-color:#69399a;background:rgba(155,92,255,.08);box-shadow:0 0 10px rgba(155,92,255,.14)}
+.tier-3{color:#55d9ff;border-color:#23657a;background:rgba(50,190,230,.07);box-shadow:0 0 10px rgba(50,190,230,.1)}
+.tier-4{color:#63e6a4;border-color:#26734d;background:rgba(50,220,130,.07);box-shadow:0 0 10px rgba(50,220,130,.1)}
+.tier-5{color:#ff6975;border-color:#79323a;background:rgba(255,70,85,.07);box-shadow:0 0 10px rgba(255,70,85,.1)}
 
 .points{font-weight:950;color:#fff}
 
-.info{
-  padding:25px;
-  line-height:1.65;
-}
-
-.info h3{
-  color:#39dfff;
-  margin-top:0;
-}
-
+.info{padding:25px;line-height:1.65}
+.info h3{color:#39dfff;margin-top:0}
 .info h4{margin-bottom:5px}
-
-.info li{
-  margin:6px 0;
-  color:#c5c5c5;
-}
-
+.info li{margin:6px 0;color:#c5c5c5}
 .info strong{color:#ff6975}
+
+/* PROFILE MODAL */
 
 .modal-bg{
   position:fixed;
@@ -522,21 +529,10 @@ tr:hover td{background:rgba(0,190,255,.035)}
   margin-bottom:18px;
 }
 
-.profile-name{
-  font-size:28px;
-  font-weight:950;
-}
-
-.profile-total{
-  color:#39dfff;
-  font-weight:900;
-  margin-top:5px;
-}
-
-.profile-combat{
-  margin-top:7px;
-  font-size:13px;
-}
+.profile-identity{display:flex;align-items:center;gap:16px;min-width:0}
+.profile-name{font-size:28px;font-weight:950;word-break:break-word}
+.profile-total{color:#39dfff;font-weight:900;margin-top:5px}
+.profile-combat{margin-top:7px;font-size:13px}
 
 .close{
   border:0;
@@ -547,13 +543,10 @@ tr:hover td{background:rgba(0,190,255,.035)}
   border-radius:9px;
   cursor:pointer;
   font-size:18px;
+  flex-shrink:0;
 }
 
-.profile-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
+.profile-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 
 .profile-mode{
   background:#111923;
@@ -566,18 +559,9 @@ tr:hover td{background:rgba(0,190,255,.035)}
 }
 
 .profile-mode .mode-icon-wrap{flex-shrink:0}
+.profile-mode-name{color:#858f9a;font-size:11px;margin-bottom:4px}
 
-.profile-mode-name{
-  color:#858f9a;
-  font-size:11px;
-  margin-bottom:4px;
-}
-
-.empty{
-  padding:35px;
-  text-align:center;
-  color:#777;
-}
+.empty{padding:35px;text-align:center;color:#777}
 
 footer{
   text-align:center;
@@ -591,33 +575,23 @@ footer{
 
 @media(max-width:750px){
   header{padding:0 12px}
-
-  .brand-logo{
-    width:145px;
-    height:45px;
-  }
-
-  .hero-logo{
-    width:min(310px,90%);
-  }
-
-  .header-btn{
-    padding:8px 9px;
-    font-size:12px;
-  }
-
+  .brand-logo{width:145px;height:45px}
+  .hero-logo{width:min(310px,90%)}
+  .header-btn{padding:8px 9px;font-size:12px}
   .stats{grid-template-columns:1fr}
   .controls{grid-template-columns:1fr}
-
-  .podium{
-    grid-template-columns:1fr;
-    align-items:stretch;
-  }
-
+  .podium{grid-template-columns:1fr;align-items:stretch}
   .podium-card.first{order:-1}
   .profile-grid{grid-template-columns:1fr}
   main{padding:25px 12px 50px}
   .hero h1{font-size:47px}
+}
+
+@media(max-width:420px){
+  .profile{padding:18px}
+  .profile-name{font-size:21px}
+  .skin-wrap.skin-profile{width:68px;height:68px;flex-basis:68px}
+  .profile-identity{gap:11px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -644,59 +618,32 @@ footer{
 </div>
 
 <header>
-
   <div class="logo">
-    <img
-      src="asian-crossmc-logo.png"
-      class="brand-logo"
-      alt="Asian CrossMC"
-    >
+    <img src="asian-crossmc-logo.png" class="brand-logo" alt="Asian CrossMC">
   </div>
 
   <div class="header-buttons">
-
-    <a
-      class="header-btn discord-btn"
-      href="https://discord.gg/D8WakRaEB"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a class="header-btn discord-btn" href="https://discord.gg/D8WakRaEB" target="_blank" rel="noopener noreferrer">
       💬 Discord
     </a>
 
-    <a
-      class="header-btn"
-      href="admin.html"
-    >
+    <a class="header-btn" href="admin.html">
       🔐 Admin
     </a>
-
   </div>
-
 </header>
 
 <main>
 
 <section class="hero">
+  <img src="asian-crossmc-logo.png" class="hero-logo" alt="Asian CrossMC">
 
-  <img
-    src="asian-crossmc-logo.png"
-    class="hero-logo"
-    alt="Asian CrossMC"
-  >
+  <h1>ASIAN <span>CROSSMC</span></h1>
 
-  <h1>
-    ASIAN <span>CROSSMC</span>
-  </h1>
-
-  <p>
-    MCPE Tier Testing • S → D • High / Mid / Low
-  </p>
-
+  <p>MCPE Tier Testing • S → D • High / Mid / Low</p>
 </section>
 
 <div class="stats">
-
   <div class="stat">
     <div id="statPlayers" class="stat-value">0</div>
     <div class="stat-label">Players</div>
@@ -706,29 +653,19 @@ footer{
     <div id="statHT1" class="stat-value">0</div>
     <div class="stat-label">HT1 Players</div>
   </div>
-
 </div>
 
-<div class="section-title">
-  🏆 Top Players
-</div>
+<div class="section-title">🏆 Top Players</div>
 
 <div id="podium" class="podium">
   <div class="empty">Loading...</div>
 </div>
 
 <div class="controls">
-
-  <input
-    id="search"
-    type="text"
-    placeholder="🔎 Search player..."
-  >
+  <input id="search" type="text" placeholder="🔎 Search player...">
 
   <select id="mode">
-
     <option value="ALL">Overall</option>
-
     <option value="AXE PVP">AXE PVP</option>
     <option value="CART PVP">CART PVP</option>
     <option value="DIA-SMP-KIT">DIA-SMP-KIT</option>
@@ -739,76 +676,52 @@ footer{
     <option value="TANK">TANK</option>
     <option value="UHC">UHC</option>
     <option value="VANILLA CRYSTAL">VANILLA CRYSTAL</option>
-
   </select>
 
   <select id="tierFilter">
-
     <option value="ALL">All Tiers</option>
-
     <option value="HT1">HT1</option>
     <option value="MT1">MT1</option>
     <option value="LT1">LT1</option>
-
     <option value="HT2">HT2</option>
     <option value="MT2">MT2</option>
     <option value="LT2">LT2</option>
-
     <option value="HT3">HT3</option>
     <option value="MT3">MT3</option>
     <option value="LT3">LT3</option>
-
     <option value="HT4">HT4</option>
     <option value="MT4">MT4</option>
     <option value="LT4">LT4</option>
-
     <option value="HT5">HT5</option>
     <option value="MT5">MT5</option>
     <option value="LT5">LT5</option>
-
   </select>
-
 </div>
 
-<div class="section-title">
-  📊 Leaderboard
-</div>
+<div class="section-title">📊 Leaderboard</div>
 
 <div class="card table-wrap">
-
 <table>
-
 <thead>
-
 <tr>
   <th>#</th>
   <th>Player</th>
   <th>Gamemodes</th>
   <th>Points</th>
 </tr>
-
 </thead>
 
 <tbody id="leaderboard">
-
 <tr>
-  <td colspan="4" class="empty">
-    Loading...
-  </td>
+  <td colspan="4" class="empty">Loading...</td>
 </tr>
-
 </tbody>
-
 </table>
-
 </div>
 
-<div class="section-title">
-  📜 Tier Test Information
-</div>
+<div class="section-title">📜 Tier Test Information</div>
 
 <div class="card info">
-
   <h3>┃ Tier Test Information</h3>
 
   <p>
@@ -818,7 +731,6 @@ footer{
   <h3>┃ Tier Test Rules</h3>
 
   <h4>In Discord:</h4>
-
   <ul>
     <li>You must read all test rules before requesting.</li>
     <li>Provide complete and correct information.</li>
@@ -827,7 +739,6 @@ footer{
   </ul>
 
   <h4>In-Game:</h4>
-
   <ul>
     <li>Hacking is strictly prohibited.</li>
     <li>Illegal clients are not allowed.</li>
@@ -836,71 +747,36 @@ footer{
     <li>Your ping must be under 135ms.</li>
     <li><strong>KBM strictly BANNED</strong></li>
   </ul>
-
 </div>
 
 </main>
 
-<footer>
-  ASIAN CROSSMC • MCPE Tier Testing
-</footer>
+<footer>ASIAN CROSSMC • MCPE Tier Testing</footer>
 
-<div
-  id="modal"
-  class="modal-bg"
-  onclick="closeProfile(event)"
->
-
-  <div
-    class="profile"
-    onclick="event.stopPropagation()"
-  >
+<div id="modal" class="modal-bg" onclick="closeProfile(event)">
+  <div class="profile" onclick="event.stopPropagation()">
 
     <div class="profile-head">
+      <div class="profile-identity">
 
-      <div>
+        <div id="profileSkin"></div>
 
-        <div
-          id="profileName"
-          class="profile-name"
-        >
-          Player
-        </div>
-
-        <div
-          id="profileCombat"
-          class="profile-combat"
-        ></div>
-
-        <div
-          id="profileTotal"
-          class="profile-total"
-        >
-          0 Points
+        <div>
+          <div id="profileName" class="profile-name">Player</div>
+          <div id="profileCombat" class="profile-combat"></div>
+          <div id="profileTotal" class="profile-total">0 Points</div>
         </div>
 
       </div>
 
-      <button
-        class="close"
-        onclick="closeProfile()"
-      >
-        ×
-      </button>
-
+      <button class="close" onclick="closeProfile()">×</button>
     </div>
 
-    <div
-      id="profileGrid"
-      class="profile-grid"
-    ></div>
-
+    <div id="profileGrid" class="profile-grid"></div>
   </div>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="supabase-config.js"></script>
 
 <script>
@@ -908,27 +784,11 @@ footer{
 /* FIXED POINTS */
 
 const TIER_POINTS = {
-
-  HT1:150,
-  MT1:140,
-  LT1:130,
-
-  HT2:120,
-  MT2:110,
-  LT2:100,
-
-  HT3:90,
-  MT3:80,
-  LT3:70,
-
-  HT4:60,
-  MT4:50,
-  LT4:40,
-
-  HT5:30,
-  MT5:20,
-  LT5:10
-
+  HT1:150, MT1:140, LT1:130,
+  HT2:120, MT2:110, LT2:100,
+  HT3:90, MT3:80, LT3:70,
+  HT4:60, MT4:50, LT4:40,
+  HT5:30, MT5:20, LT5:10
 };
 
 
@@ -936,77 +796,21 @@ const TIER_POINTS = {
 
 function getCombatRank(points){
 
-  if(points < 100)
-    return null;
+  if(points < 100) return null;
 
-  if(points < 200){
-    return {
-      name:"COMBAT ACE I",
-      className:"combat-ace"
-    };
-  }
+  if(points < 200) return {name:"COMBAT ACE I",className:"combat-ace"};
+  if(points < 300) return {name:"COMBAT ACE II",className:"combat-ace"};
+  if(points < 500) return {name:"COMBAT ACE III",className:"combat-ace"};
 
-  if(points < 300){
-    return {
-      name:"COMBAT ACE II",
-      className:"combat-ace"
-    };
-  }
+  if(points < 600) return {name:"COMBAT MASTER I",className:"combat-master"};
+  if(points < 700) return {name:"COMBAT MASTER II",className:"combat-master"};
+  if(points < 900) return {name:"COMBAT MASTER III",className:"combat-master"};
 
-  if(points < 500){
-    return {
-      name:"COMBAT ACE III",
-      className:"combat-ace"
-    };
-  }
+  if(points < 1000) return {name:"COMBAT GRANDMASTER I",className:"combat-grandmaster"};
+  if(points < 1100) return {name:"COMBAT GRANDMASTER II",className:"combat-grandmaster"};
+  if(points < 1350) return {name:"COMBAT GRANDMASTER III",className:"combat-grandmaster"};
 
-  if(points < 600){
-    return {
-      name:"COMBAT MASTER I",
-      className:"combat-master"
-    };
-  }
-
-  if(points < 700){
-    return {
-      name:"COMBAT MASTER II",
-      className:"combat-master"
-    };
-  }
-
-  if(points < 900){
-    return {
-      name:"COMBAT MASTER III",
-      className:"combat-master"
-    };
-  }
-
-  if(points < 1000){
-    return {
-      name:"COMBAT GRANDMASTER I",
-      className:"combat-grandmaster"
-    };
-  }
-
-  if(points < 1100){
-    return {
-      name:"COMBAT GRANDMASTER II",
-      className:"combat-grandmaster"
-    };
-  }
-
-  if(points < 1350){
-    return {
-      name:"COMBAT GRANDMASTER III",
-      className:"combat-grandmaster"
-    };
-  }
-
-  return {
-    name:"THE APEX",
-    className:"combat-apex"
-  };
-
+  return {name:"THE APEX",className:"combat-apex"};
 }
 
 
@@ -1014,15 +818,59 @@ function getCombatRank(points){
 
 function combatTitleHTML(points){
 
-  const rank =
-    getCombatRank(points);
+  const rank = getCombatRank(points);
 
-  if(!rank)
-    return "";
+  if(!rank) return "";
 
   return `
     <span class="combat-title ${rank.className}">
       ${rank.name}
+    </span>
+  `;
+}
+
+
+/* BEDROCK SKIN SYSTEM */
+
+function skinURL(name,size=128){
+
+  return `https://tabavatars.net/avatar/?username=${encodeURIComponent(name)}&platform=bedrock&type=body-iso&size=${size}`;
+
+}
+
+function playerSkinHTML(name,size=64,extraClass=""){
+
+  const safeName = escapeHTML(name);
+  const initials = safeName.slice(0,2).toUpperCase();
+
+  return `
+    <span class="skin-wrap ${extraClass}">
+      <span class="skin-fallback">${initials}</span>
+      <img
+        src="${skinURL(name,size)}"
+        alt="${safeName} Minecraft skin"
+        loading="lazy"
+        onerror="this.style.display='none'"
+      >
+    </span>
+  `;
+
+}
+
+
+/* SERIAL NUMBER DESIGN */
+
+function rankHTML(index){
+
+  let rankClass = "";
+
+  if(index === 0) rankClass = "rank-first";
+  else if(index === 1) rankClass = "rank-second";
+  else if(index === 2) rankClass = "rank-third";
+
+  return `
+    <span class="rank-badge ${rankClass}">
+      #${String(index+1).padStart(2,"0")}
     </span>
   `;
 
@@ -1032,37 +880,16 @@ function combatTitleHTML(points){
 /* PHOTO-BASED MC TIERS SVG ICONS */
 
 const MODE_ICONS = {
-
-  "AXE PVP":
-    "icons/axe-pvp.svg",
-
-  "CART PVP":
-    "icons/minecart.svg",
-
-  "DIA-SMP-KIT":
-    "icons/dia-smp-kit.svg",
-
-  "E-MACE":
-    "icons/emace.svg",
-
-  "NETHPOT":
-    "icons/nethpot.svg",
-
-  "SMP KIT":
-    "icons/smp-kit.svg",
-
-  "SPEAR MACE":
-    "icons/spear-mace.svg",
-
-  "TANK":
-    "icons/tank.svg",
-
-  "UHC":
-    "icons/uhc.svg",
-
-  "VANILLA CRYSTAL":
-    "icons/vanilla-crystal.svg"
-
+  "AXE PVP":"icons/axe-pvp.svg",
+  "CART PVP":"icons/minecart.svg",
+  "DIA-SMP-KIT":"icons/dia-smp-kit.svg",
+  "E-MACE":"icons/emace.svg",
+  "NETHPOT":"icons/nethpot.svg",
+  "SMP KIT":"icons/smp-kit.svg",
+  "SPEAR MACE":"icons/spear-mace.svg",
+  "TANK":"icons/tank.svg",
+  "UHC":"icons/uhc.svg",
+  "VANILLA CRYSTAL":"icons/vanilla-crystal.svg"
 };
 
 
@@ -1071,28 +898,14 @@ function svgIcon(mode){
   const src = MODE_ICONS[mode];
 
   if(!src){
-
     return `
-      <svg
-        class="mode-svg"
-        viewBox="0 0 40 40"
-        aria-hidden="true"
-      >
-        <circle
-          cx="20"
-          cy="20"
-          r="12"
-          fill="#777"
-          stroke="#ddd"
-          stroke-width="2"
-        />
+      <svg class="mode-svg" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="12" fill="#777" stroke="#ddd" stroke-width="2"/>
       </svg>
     `;
-
   }
 
   return `
-
     <img
       class="mode-svg"
       src="${src}"
@@ -1100,9 +913,7 @@ function svgIcon(mode){
       loading="lazy"
       draggable="false"
     >
-
   `;
-
 }
 
 
@@ -1113,19 +924,16 @@ let players = [];
 
 /* SUPABASE */
 
-const sb =
-  window.supabase.createClient(
-    window.VOID_SUPABASE.url,
-    window.VOID_SUPABASE.anonKey
-  );
+const sb = window.supabase.createClient(
+  window.VOID_SUPABASE.url,
+  window.VOID_SUPABASE.anonKey
+);
 
 
 /* POINTS */
 
 function getPoints(player){
-
   return TIER_POINTS[player.tier] || 0;
-
 }
 
 
@@ -1138,7 +946,6 @@ function getDisplayTier(player){
   }
 
   return player.tier;
-
 }
 
 
@@ -1146,23 +953,14 @@ function getDisplayTier(player){
 
 function getTierClass(tier){
 
-  if(!tier)
-    return "";
+  if(!tier) return "";
 
-  if(tier.includes("1"))
-    return "tier-1";
-
-  if(tier.includes("2"))
-    return "tier-2";
-
-  if(tier.includes("3"))
-    return "tier-3";
-
-  if(tier.includes("4"))
-    return "tier-4";
+  if(tier.includes("1")) return "tier-1";
+  if(tier.includes("2")) return "tier-2";
+  if(tier.includes("3")) return "tier-3";
+  if(tier.includes("4")) return "tier-4";
 
   return "tier-5";
-
 }
 
 
@@ -1170,10 +968,7 @@ function getTierClass(tier){
 
 async function loadPlayers(){
 
-  const {
-    data,
-    error
-  } = await sb
+  const {data,error} = await sb
     .from("players")
     .select("name,mode,tier,points,tests,retired");
 
@@ -1181,33 +976,22 @@ async function loadPlayers(){
 
     console.error(error);
 
-    document
-      .getElementById("leaderboard")
-      .innerHTML = `
-
-        <tr>
-
-          <td
-            colspan="4"
-            class="empty"
-          >
-            ⚠️ ${escapeHTML(error.message)}
-          </td>
-
-        </tr>
-
-      `;
+    document.getElementById("leaderboard").innerHTML = `
+      <tr>
+        <td colspan="4" class="empty">
+          ⚠️ ${escapeHTML(error.message)}
+        </td>
+      </tr>
+    `;
 
     return;
-
   }
 
-  players =
-    (data || []).filter(p =>
-      p.name &&
-      p.mode &&
-      TIER_POINTS[p.tier]
-    );
+  players = (data || []).filter(p =>
+    p.name &&
+    p.mode &&
+    TIER_POINTS[p.tier]
+  );
 
   updateStats();
   renderPodium();
@@ -1220,27 +1004,18 @@ async function loadPlayers(){
 
 function updateStats(){
 
-  const uniquePlayers =
-    new Set(
-      players.map(p => p.name)
-    ).size;
+  const uniquePlayers = new Set(
+    players.map(p => p.name)
+  ).size;
 
-  const ht1 =
-    new Set(
-      players
-        .filter(p => p.tier === "HT1")
-        .map(p => p.name)
-    ).size;
+  const ht1 = new Set(
+    players
+      .filter(p => p.tier === "HT1")
+      .map(p => p.name)
+  ).size;
 
-  document
-    .getElementById("statPlayers")
-    .textContent =
-      uniquePlayers;
-
-  document
-    .getElementById("statHT1")
-    .textContent =
-      ht1;
+  document.getElementById("statPlayers").textContent = uniquePlayers;
+  document.getElementById("statHT1").textContent = ht1;
 
 }
 
@@ -1254,42 +1029,28 @@ function buildOverall(){
   players.forEach(player => {
 
     if(!map.has(player.name)){
-
-      map.set(
-        player.name,
-        {
-          name:player.name,
-          total:0,
-          modes:[]
-        }
-      );
-
+      map.set(player.name,{
+        name:player.name,
+        total:0,
+        modes:[]
+      });
     }
 
-    const p =
-      map.get(player.name);
-
-    const points =
-      getPoints(player);
+    const p = map.get(player.name);
+    const points = getPoints(player);
 
     p.total += points;
 
     p.modes.push({
-
       mode:player.mode,
       tier:player.tier,
       retired:player.retired === true,
       points:points
-
     });
 
   });
 
-  return [...map.values()]
-    .sort(
-      (a,b) =>
-        b.total-a.total
-    );
+  return [...map.values()].sort((a,b) => b.total-a.total);
 
 }
 
@@ -1298,60 +1059,52 @@ function buildOverall(){
 
 function renderPodium(){
 
-  const container =
-    document.getElementById("podium");
-
-  const top =
-    buildOverall().slice(0,3);
+  const container = document.getElementById("podium");
+  const top = buildOverall().slice(0,3);
 
   if(!top.length){
-
-    container.innerHTML =
-      `<div class="empty">No players yet.</div>`;
-
+    container.innerHTML = `<div class="empty">No players yet.</div>`;
     return;
-
   }
 
-  const medals =
-    ["🥇","🥈","🥉"];
+  const medals = ["🥇","🥈","🥉"];
+  const classes = ["first","second","third"];
 
-  const classes =
-    ["first","second","third"];
+  container.innerHTML = top.map((p,i) => `
 
-  container.innerHTML =
-    top.map((p,i)=>`
+    <div
+      class="podium-card ${classes[i]}"
+      onclick="openProfile('${encodeURIComponent(p.name)}')"
+    >
 
-      <div
-        class="podium-card ${classes[i]}"
-        onclick="openProfile('${encodeURIComponent(p.name)}')"
-      >
+      <div class="medal">${medals[i]}</div>
 
-        <div class="medal">
-          ${medals[i]}
-        </div>
+      <div class="podium-rank">
+        ${rankHTML(i)}
+      </div>
 
-        <div class="podium-rank">
-          #${i+1}
-        </div>
+      <div class="podium-player">
 
-        <div class="podium-name">
+        ${playerSkinHTML(p.name,128,"skin-large")}
 
-          <div>
+        <div class="podium-player-info">
+
+          <div class="podium-name">
             ${escapeHTML(p.name)}
+            ${combatTitleHTML(p.total)}
           </div>
 
-          ${combatTitleHTML(p.total)}
-
-        </div>
-
-        <div class="podium-points">
-          ${p.total.toLocaleString()} Points
         </div>
 
       </div>
 
-    `).join("");
+      <div class="podium-points">
+        ${p.total.toLocaleString()} Points
+      </div>
+
+    </div>
+
+  `).join("");
 
 }
 
@@ -1361,28 +1114,18 @@ function renderPodium(){
 function createModeIcons(modes){
 
   return modes
-    .sort(
-      (a,b) =>
-        b.points-a.points
-    )
+    .sort((a,b) => b.points-a.points)
     .map(x => `
 
-      <div
-        class="mode-item"
-        title="${escapeHTML(x.mode)}"
-      >
+      <div class="mode-item" title="${escapeHTML(x.mode)}">
 
         <div class="mode-icon-wrap">
           ${svgIcon(x.mode)}
         </div>
 
-        <span
-          class="mode-tier ${getTierClass(x.tier)}"
-        >
+        <span class="mode-tier ${getTierClass(x.tier)}">
           ${escapeHTML(
-            x.retired === true
-              ? `R-${x.tier}`
-              : x.tier
+            x.retired === true ? `R-${x.tier}` : x.tier
           )}
         </span>
 
@@ -1398,44 +1141,17 @@ function createModeIcons(modes){
 
 function getFiltered(){
 
-  const search =
-    document
-      .getElementById("search")
-      .value
-      .trim()
-      .toLowerCase();
-
-  const mode =
-    document
-      .getElementById("mode")
-      .value;
-
-  const tier =
-    document
-      .getElementById("tierFilter")
-      .value;
+  const search = document.getElementById("search").value.trim().toLowerCase();
+  const mode = document.getElementById("mode").value;
+  const tier = document.getElementById("tierFilter").value;
 
   return players.filter(p => {
 
-    const searchOK =
-      !search ||
-      p.name
-        .toLowerCase()
-        .includes(search);
+    const searchOK = !search || p.name.toLowerCase().includes(search);
+    const modeOK = mode === "ALL" || p.mode === mode;
+    const tierOK = tier === "ALL" || p.tier === tier;
 
-    const modeOK =
-      mode === "ALL" ||
-      p.mode === mode;
-
-    const tierOK =
-      tier === "ALL" ||
-      p.tier === tier;
-
-    return (
-      searchOK &&
-      modeOK &&
-      tierOK
-    );
+    return searchOK && modeOK && tierOK;
 
   });
 
@@ -1446,162 +1162,47 @@ function getFiltered(){
 
 function renderLeaderboard(){
 
-  const tbody =
-    document
-      .getElementById("leaderboard");
+  const tbody = document.getElementById("leaderboard");
+  const mode = document.getElementById("mode").value;
+  const tier = document.getElementById("tierFilter").value;
 
-  const mode =
-    document
-      .getElementById("mode")
-      .value;
-
-  const tier =
-    document
-      .getElementById("tierFilter")
-      .value;
-
-  const search =
-    document
-      .getElementById("search")
-      .value
-      .trim()
-      .toLowerCase();
+  const search = document.getElementById("search").value.trim().toLowerCase();
 
   if(mode === "ALL"){
 
-    let overall =
-      buildOverall();
+    let overall = buildOverall();
 
-    overall =
-      overall.filter(p => {
+    overall = overall.filter(p => {
 
-        if(
-          search &&
-          !p.name
-            .toLowerCase()
-            .includes(search)
-        )
-          return false;
+      if(search && !p.name.toLowerCase().includes(search)){
+        return false;
+      }
 
-        if(
-          tier !== "ALL" &&
-          !p.modes.some(
-            x => x.tier === tier
-          )
-        )
-          return false;
+      if(tier !== "ALL" && !p.modes.some(x => x.tier === tier)){
+        return false;
+      }
 
-        return true;
+      return true;
 
-      });
+    });
 
     if(!overall.length){
 
       tbody.innerHTML = `
-
         <tr>
-
-          <td
-            colspan="4"
-            class="empty"
-          >
-            No players found.
-          </td>
-
+          <td colspan="4" class="empty">No players found.</td>
         </tr>
-
       `;
 
       return;
-
     }
 
-    tbody.innerHTML =
-      overall.map((p,i)=>`
-
-        <tr>
-
-          <td class="position">
-            ${i+1}
-          </td>
-
-          <td
-            class="player-name"
-            onclick="openProfile('${encodeURIComponent(p.name)}')"
-          >
-
-            <div class="player-name-wrap">
-
-              <div class="player-name-text">
-                ${escapeHTML(p.name)}
-              </div>
-
-              ${combatTitleHTML(p.total)}
-
-            </div>
-
-          </td>
-
-          <td>
-
-            <div class="mode-list">
-
-              ${createModeIcons(
-                [...p.modes]
-              )}
-
-            </div>
-
-          </td>
-
-          <td class="points">
-            ${p.total.toLocaleString()}
-          </td>
-
-        </tr>
-
-      `).join("");
-
-    return;
-
-  }
-
-  const list =
-    getFiltered()
-      .sort(
-        (a,b) =>
-          getPoints(b) -
-          getPoints(a)
-      );
-
-  if(!list.length){
-
-    tbody.innerHTML = `
-
-      <tr>
-
-        <td
-          colspan="4"
-          class="empty"
-        >
-          No players found.
-        </td>
-
-      </tr>
-
-    `;
-
-    return;
-
-  }
-
-  tbody.innerHTML =
-    list.map((p,i)=>`
+    tbody.innerHTML = overall.map((p,i) => `
 
       <tr>
 
         <td class="position">
-          ${i+1}
+          ${rankHTML(i)}
         </td>
 
         <td
@@ -1611,6 +1212,75 @@ function renderLeaderboard(){
 
           <div class="player-name-wrap">
 
+            ${playerSkinHTML(p.name,64)}
+
+            <div class="player-name-details">
+
+              <div class="player-name-text">
+                ${escapeHTML(p.name)}
+              </div>
+
+              ${combatTitleHTML(p.total)}
+
+            </div>
+
+          </div>
+
+        </td>
+
+        <td>
+          <div class="mode-list">
+            ${createModeIcons([...p.modes])}
+          </div>
+        </td>
+
+        <td class="points">
+          ${p.total.toLocaleString()}
+        </td>
+
+      </tr>
+
+    `).join("");
+
+    return;
+
+  }
+
+
+  const list = getFiltered().sort(
+    (a,b) => getPoints(b)-getPoints(a)
+  );
+
+  if(!list.length){
+
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="4" class="empty">No players found.</td>
+      </tr>
+    `;
+
+    return;
+  }
+
+  tbody.innerHTML = list.map((p,i) => `
+
+    <tr>
+
+      <td class="position">
+        ${rankHTML(i)}
+      </td>
+
+      <td
+        class="player-name"
+        onclick="openProfile('${encodeURIComponent(p.name)}')"
+      >
+
+        <div class="player-name-wrap">
+
+          ${playerSkinHTML(p.name,64)}
+
+          <div class="player-name-details">
+
             <div class="player-name-text">
               ${escapeHTML(p.name)}
             </div>
@@ -1619,44 +1289,39 @@ function renderLeaderboard(){
 
           </div>
 
-        </td>
+        </div>
 
-        <td>
+      </td>
 
-          <div class="mode-list">
+      <td>
 
-            <div
-              class="mode-item"
-              title="${escapeHTML(p.mode)}"
-            >
+        <div class="mode-list">
 
-              <div class="mode-icon-wrap">
-                ${svgIcon(p.mode)}
-              </div>
+          <div class="mode-item" title="${escapeHTML(p.mode)}">
 
-              <span
-                class="mode-tier ${getTierClass(p.tier)}"
-              >
-                ${escapeHTML(
-                  p.retired === true
-                    ? `R-${p.tier}`
-                    : p.tier
-                )}
-              </span>
-
+            <div class="mode-icon-wrap">
+              ${svgIcon(p.mode)}
             </div>
+
+            <span class="mode-tier ${getTierClass(p.tier)}">
+              ${escapeHTML(
+                p.retired === true ? `R-${p.tier}` : p.tier
+              )}
+            </span>
 
           </div>
 
-        </td>
+        </div>
 
-        <td class="points">
-          ${getPoints(p).toLocaleString()}
-        </td>
+      </td>
 
-      </tr>
+      <td class="points">
+        ${getPoints(p).toLocaleString()}
+      </td>
 
-    `).join("");
+    </tr>
+
+  `).join("");
 
 }
 
@@ -1665,95 +1330,69 @@ function renderLeaderboard(){
 
 function openProfile(encodedName){
 
-  const name =
-    decodeURIComponent(encodedName);
+  const name = decodeURIComponent(encodedName);
 
-  const playerModes =
-    players.filter(
-      p => p.name === name
-    );
+  const playerModes = players.filter(p => p.name === name);
 
-  if(!playerModes.length)
-    return;
+  if(!playerModes.length) return;
 
-  const total =
-    playerModes.reduce(
-      (sum,p) =>
-        sum + getPoints(p),
-      0
-    );
+  const total = playerModes.reduce(
+    (sum,p) => sum + getPoints(p),
+    0
+  );
 
-  document
-    .getElementById("profileName")
-    .textContent =
-      name;
+  document.getElementById("profileSkin").innerHTML =
+    playerSkinHTML(name,256,"skin-profile");
 
-  document
-    .getElementById("profileCombat")
-    .innerHTML =
-      combatTitleHTML(total);
+  document.getElementById("profileName").textContent = name;
 
-  document
-    .getElementById("profileTotal")
-    .textContent =
-      total.toLocaleString() +
-      " Points";
+  document.getElementById("profileCombat").innerHTML =
+    combatTitleHTML(total);
 
-  document
-    .getElementById("profileGrid")
-    .innerHTML =
+  document.getElementById("profileTotal").textContent =
+    total.toLocaleString() + " Points";
 
-      playerModes
-        .sort(
-          (a,b) =>
-            getPoints(b) -
-            getPoints(a)
-        )
-        .map(p=>`
+  document.getElementById("profileGrid").innerHTML =
 
-          <div class="profile-mode">
+    playerModes
+      .sort((a,b) => getPoints(b)-getPoints(a))
+      .map(p => `
 
-            <div class="mode-icon-wrap">
-              ${svgIcon(p.mode)}
+        <div class="profile-mode">
+
+          <div class="mode-icon-wrap">
+            ${svgIcon(p.mode)}
+          </div>
+
+          <div>
+
+            <div class="profile-mode-name">
+              ${escapeHTML(p.mode)}
             </div>
 
-            <div>
+            <span class="mode-tier ${getTierClass(p.tier)}">
+              ${escapeHTML(getDisplayTier(p))}
+            </span>
 
-              <div class="profile-mode-name">
-                ${escapeHTML(p.mode)}
-              </div>
-
-              <span
-                class="mode-tier ${getTierClass(p.tier)}"
-              >
-                ${escapeHTML(getDisplayTier(p))}
-              </span>
-
-              <div
-                style="margin-top:5px;font-weight:800"
-              >
-                ${getPoints(p).toLocaleString()} pts
-              </div>
-
+            <div style="margin-top:5px;font-weight:800">
+              ${getPoints(p).toLocaleString()} pts
             </div>
 
           </div>
 
-        `)
-        .join("");
+        </div>
 
-  document
-    .getElementById("modal")
-    .classList.add("show");
+      `)
+      .join("");
+
+  document.getElementById("modal").classList.add("show");
 
 }
 
 
 function closeProfile(){
 
-  document
-    .getElementById("modal")
-    .classList.remove("show");
+  document.getElementById("modal").classList.remove("show");
 
 }
 
@@ -1774,39 +1413,16 @@ function escapeHTML(value){
 
 /* CONTROLS */
 
-document
-  .getElementById("search")
-  .addEventListener(
-    "input",
-    renderLeaderboard
-  );
-
-document
-  .getElementById("mode")
-  .addEventListener(
-    "change",
-    renderLeaderboard
-  );
-
-document
-  .getElementById("tierFilter")
-  .addEventListener(
-    "change",
-    renderLeaderboard
-  );
+document.getElementById("search").addEventListener("input",renderLeaderboard);
+document.getElementById("mode").addEventListener("change",renderLeaderboard);
+document.getElementById("tierFilter").addEventListener("change",renderLeaderboard);
 
 
 /* ESCAPE MODAL */
 
-document.addEventListener(
-  "keydown",
-  e => {
-
-    if(e.key === "Escape")
-      closeProfile();
-
-  }
-);
+document.addEventListener("keydown",e => {
+  if(e.key === "Escape") closeProfile();
+});
 
 
 /* START */
@@ -1816,4 +1432,4 @@ loadPlayers();
 </script>
 
 </body>
-  </html>
+</html>
