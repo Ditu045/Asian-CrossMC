@@ -3,802 +3,689 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>Asian CrossMC — Admin</title>
 
 <style>
+*{box-sizing:border-box}
 body{
-  margin:0;
-  background:#07090e;
-  color:#f5f7fb;
+  margin:0;background:#07090e;color:#f5f7fb;
   font-family:Arial,sans-serif
 }
-
-main{
-  max-width:900px;
-  margin:auto;
-  padding:30px 18px
-}
-
+main{max-width:1050px;margin:auto;padding:25px 16px}
 .box{
-  background:#111621;
-  border:1px solid #2a3241;
-  border-radius:16px;
-  padding:20px;
-  margin-bottom:15px
+  background:#111621;border:1px solid #2a3241;
+  border-radius:16px;padding:19px;margin-bottom:15px
 }
-
-h1{
-  margin-top:0
+h1,h2,h3{margin-top:0}
+input,select,textarea{
+  width:100%;padding:12px;margin:7px 0 12px;
+  background:#181e2a;color:#fff;
+  border:1px solid #2a3241;border-radius:9px;
+  font:inherit
 }
-
-input,select{
-  width:100%;
-  padding:12px;
-  margin:7px 0 12px;
-  box-sizing:border-box;
-  background:#181e2a;
-  color:#fff;
-  border:1px solid #2a3241;
-  border-radius:9px
-}
-
+textarea{min-height:90px;resize:vertical}
 button{
-  padding:11px 15px;
-  border:0;
-  border-radius:9px;
-  background:#7c5cff;
-  color:#fff;
-  font-weight:800;
-  cursor:pointer;
-  margin:4px
+  padding:11px 15px;border:0;border-radius:9px;
+  background:#087eaa;color:white;font-weight:800;
+  cursor:pointer;margin:4px
 }
-
-button.red{
-  background:#8d3040
-}
-
-button.gray{
-  background:#252d3b
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:12px
-}
-
-.row{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  align-items:center
-}
-
-.muted{
-  color:#929aaa;
-  font-size:13px
-}
-
-.msg{
-  padding:10px;
-  border-radius:9px;
-  background:#171d28;
-  margin-bottom:10px
-}
-
-
-/* =========================
-   RETIRED TOGGLE
-========================= */
-
-.retired-box{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  background:#181e2a;
-  border:1px solid #2a3241;
-  border-radius:12px;
-  padding:14px;
-  margin:7px 0 15px;
-}
-
-.retired-title{
-  font-weight:900;
-  font-size:15px;
-}
-
-.retired-description{
-  color:#929aaa;
-  font-size:12px;
-  margin-top:4px;
-}
-
-.switch{
-  position:relative;
-  width:52px;
-  height:28px;
-  flex-shrink:0;
-}
-
-.switch input{
-  opacity:0;
-  width:0;
-  height:0;
-  margin:0;
-}
-
-.slider{
-  position:absolute;
-  cursor:pointer;
-  inset:0;
-  background:#303846;
-  border-radius:30px;
-  transition:.2s;
-}
-
-.slider:before{
-  content:"";
-  position:absolute;
-  height:22px;
-  width:22px;
-  left:3px;
-  top:3px;
-  background:white;
-  border-radius:50%;
-  transition:.2s;
-}
-
-.switch input:checked + .slider{
-  background:#7c5cff;
-  box-shadow:0 0 14px rgba(124,92,255,.4);
-}
-
-.switch input:checked + .slider:before{
-  transform:translateX(24px);
-}
-
-
-/* =========================
-   PLAYER RETIRED STATUS
-========================= */
-
+button.red{background:#8d3040}
+button.gray{background:#252d3b}
+button.green{background:#16734d}
+button:disabled{opacity:.5;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.muted{color:#929aaa;font-size:13px}
+.msg{padding:11px;border-radius:9px;background:#171d28;margin:10px 0;white-space:pre-wrap}
+.player-card{position:relative}
+.player-tier{font-weight:900;color:#b978ff}
 .retired-status{
-  display:inline-block;
-  margin-top:7px;
-  padding:4px 8px;
-  border-radius:6px;
-  font-size:11px;
-  font-weight:900;
+ display:inline-block;margin-top:7px;padding:4px 8px;
+ border-radius:6px;font-size:11px;font-weight:900
 }
-
-.retired-status.active{
-  color:#63e6a4;
-  background:rgba(50,220,130,.08);
-  border:1px solid #26734d;
-}
-
-.retired-status.retired{
-  color:#ff9aa3;
-  background:rgba(255,70,85,.08);
-  border:1px solid #79323a;
-}
-
-.player-card{
-  position:relative;
-}
-
-.player-tier{
-  font-weight:900;
-  color:#b978ff;
+.retired-status.active{color:#63e6a4;background:#10271d;border:1px solid #26734d}
+.retired-status.retired{color:#ff9aa3;background:#30191d;border:1px solid #79323a}
+.tag{font-size:11px;font-weight:900;padding:5px 9px;border-radius:7px;background:#252d3b}
+.tag.pending{color:#ffd16a}
+.tag.approved{color:#63e6a4}
+.tag.rejected{color:#ff9aa3}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}
+.tabs button{background:#202a38}
+.tabs button.selected{background:#087eaa}
+.section{display:none}
+.section.active{display:block}
+hr{border:0;border-top:1px solid #2a3241;margin:18px 0}
+.small{font-size:12px;color:#929aaa}
+.field-label{font-size:13px;font-weight:bold}
+.request-card{border:1px solid #303b4c;border-radius:12px;padding:14px;margin:10px 0}
+.change-line{font-size:13px;margin:5px 0;overflow-wrap:anywhere}
+@media(max-width:500px){
+ main{padding:15px 10px}
+ .box{padding:14px}
+ button{padding:10px}
 }
 </style>
 </head>
 
 <body>
-
 <main>
 
 <div class="box">
-
-<a href="index.html" style="color:white">
-← Public website
-</a>
-
-<h1>🔐 Asian CrossMC Admin</h1>
+<a href="index.html" style="color:#39dfff;text-decoration:none">← Public website</a>
+<h1>🔐 ASIAN CROSSMC</h1>
+<div class="muted">Owner & Administrator Dashboard</div>
 
 <div id="auth">
+<hr>
+<h2>Admin Login</h2>
+<p class="muted">Only Owner-authorized Admin accounts can access this dashboard.</p>
 
-<p class="muted">
-Create/sign in to the admin account you made in Supabase Authentication.
-</p>
+<input id="email" type="email" placeholder="Email address" autocomplete="email">
+<input id="password" type="password" placeholder="Password" autocomplete="current-password">
 
-<input
-  id="email"
-  type="email"
-  placeholder="Admin email"
->
-
-<input
-  id="password"
-  type="password"
-  placeholder="Password"
->
-
-<button onclick="login()">Login</button>
-
-<button class="gray" onclick="signup()">
-Create account
-</button>
-
+<button onclick="login()">LOGIN</button>
+<button class="gray" onclick="signup()">ADMIN REGISTRATION</button>
+<div id="authMsg" class="msg" style="display:none"></div>
 </div>
-
 
 <div id="app" style="display:none">
+<hr>
+<div class="row">
+ <div>
+  <div id="who"></div>
+  <div id="roleLabel" class="muted"></div>
+ </div>
+ <button class="gray" onclick="logout()">LOGOUT</button>
+</div>
 
-<div id="who" class="muted"></div>
+<div class="tabs">
+ <button id="tabPlayers" onclick="tab('players')">PLAYERS</button>
+ <button id="tabRequests" onclick="tab('requests')">REQUEST CENTER</button>
+ <button id="tabWhitelist" onclick="tab('whitelist')">ADMIN MANAGEMENT</button>
+</div>
 
-<button class="gray" onclick="logout()">
-Logout
-</button>
+<!-- PLAYERS -->
+<div id="sectionPlayers" class="section active">
 
-<hr style="border-color:#2a3241;margin:18px 0">
+<div class="box">
+<h2 id="formHeading">➕ Add New Player</h2>
+<p class="muted" id="formDescription"></p>
 
-<h2>Add / Update Player</h2>
+<input id="playerId" type="hidden">
 
-<input
-  id="name"
-  placeholder="Minecraft username"
->
+<label class="field-label">Minecraft Username</label>
+<input id="name" placeholder="Original Minecraft gamertag">
 
+<label class="field-label">Gamemode</label>
 <select id="mode"></select>
 
+<label class="field-label">Tier</label>
 <select id="tier">
-
-<option>HT1</option>
-<option>MT1</option>
-<option>LT1</option>
-
-<option>HT2</option>
-<option>MT2</option>
-<option>LT2</option>
-
-<option>HT3</option>
-<option>MT3</option>
-<option>LT3</option>
-
-<option>HT4</option>
-<option>MT4</option>
-<option>LT4</option>
-
-<option>HT5</option>
-<option>MT5</option>
-<option>LT5</option>
-
+<option>HT1</option><option>MT1</option><option>LT1</option>
+<option>HT2</option><option>MT2</option><option>LT2</option>
+<option>HT3</option><option>MT3</option><option>LT3</option>
+<option>HT4</option><option>MT4</option><option>LT4</option>
+<option>HT5</option><option>MT5</option><option>LT5</option>
 </select>
 
+<label class="field-label">Tests completed</label>
+<input id="tests" type="number" min="0" value="0">
 
-<!-- RETIRED TOGGLE -->
-
-<div class="retired-box">
-
-  <div>
-
-    <div class="retired-title">
-      🏁 Retired Player
-    </div>
-
-    <div class="retired-description">
-      ON = R-TIER • OFF = Normal Tier
-    </div>
-
-  </div>
-
-  <label class="switch">
-
-    <input
-      type="checkbox"
-      id="retired"
-    >
-
-    <span class="slider"></span>
-
-  </label>
-
+<div id="retiredField">
+<label class="field-label">Retired status</label>
+<select id="retired">
+<option value="false">Active</option>
+<option value="true">Retired</option>
+</select>
 </div>
 
-
-<button onclick="savePlayer()">
-Publish Player
-</button>
-
-<div
-  id="msg"
-  class="msg"
-  style="display:none"
-></div>
-
+<div id="formButtons">
+<button onclick="savePlayer()">PUBLISH PLAYER</button>
+<button id="cancelEdit" class="gray" style="display:none" onclick="resetForm()">CANCEL EDIT</button>
 </div>
 
+<div id="playerMsg" class="msg" style="display:none"></div>
 </div>
 
-
-<div
-  class="box"
-  id="listBox"
-  style="display:none"
->
-
+<div class="box">
 <div class="row">
-
 <h2>Current Players</h2>
-
-<button
-  class="gray"
-  onclick="loadPlayers()"
->
-Refresh
-</button>
-
+<button class="gray" onclick="loadPlayers()">REFRESH</button>
+</div>
+<div id="list" class="grid"></div>
+</div>
 </div>
 
-<div
-  id="list"
-  class="grid"
-></div>
+<!-- REQUEST CENTER -->
+<div id="sectionRequests" class="section">
 
+<div id="adminRequestForm" class="box">
+<h2>📨 Request Center</h2>
+<p class="muted">Request an edit or retirement. Your request must include a proper reason. The Owner must approve it before anything changes.</p>
+
+<label class="field-label">Request type</label>
+<select id="requestType" onchange="requestTypeChanged()">
+<option value="edit">Request player edit</option>
+<option value="retire">Request player retirement</option>
+</select>
+
+<label class="field-label">Select player</label>
+<select id="requestPlayer"></select>
+
+<div id="editFields">
+<label class="field-label">New player name (optional)</label>
+<input id="newName" placeholder="Leave blank to keep current name">
+
+<label class="field-label">New gamemode (optional)</label>
+<select id="newMode"></select>
+
+<label class="field-label">New tier</label>
+<select id="newTier">
+<option value="">No change</option>
+<option>HT1</option><option>MT1</option><option>LT1</option>
+<option>HT2</option><option>MT2</option><option>LT2</option>
+<option>HT3</option><option>MT3</option><option>LT3</option>
+<option>HT4</option><option>MT4</option><option>LT4</option>
+<option>HT5</option><option>MT5</option><option>LT5</option>
+</select>
+
+<label class="field-label">New tests count (optional)</label>
+<input id="newTests" type="number" min="0" placeholder="Leave blank for no change">
 </div>
 
+<div id="retireFields" style="display:none">
+<label class="field-label">Requested retirement action</label>
+<select id="retireValue">
+<option value="true">Retire player</option>
+<option value="false">Unretire player</option>
+</select>
+</div>
+
+<label class="field-label">Reason (required)</label>
+<textarea id="requestReason" placeholder="Explain why this change is necessary. Include test results or relevant evidence where applicable."></textarea>
+
+<button onclick="submitRequest()">SUBMIT REQUEST</button>
+<div id="requestMsg" class="msg" style="display:none"></div>
+</div>
+
+<div class="box">
+<div class="row">
+<h2 id="requestListTitle">My Requests</h2>
+<button class="gray" onclick="loadRequests()">REFRESH</button>
+</div>
+<div id="requestList"></div>
+</div>
+</div>
+
+<!-- OWNER WHITELIST -->
+<div id="sectionWhitelist" class="section">
+<div class="box">
+<h2>👑 Admin Management</h2>
+<p class="muted">Only the Owner can authorize Admin email addresses.</p>
+
+<label class="field-label">Add Admin email</label>
+<input id="adminEmail" type="email" placeholder="admin@example.com">
+<button onclick="addAdmin()">AUTHORIZE ADMIN</button>
+<div id="whitelistMsg" class="msg" style="display:none"></div>
+</div>
+
+<div class="box">
+<div class="row">
+<h2>Authorized Admins</h2>
+<button class="gray" onclick="loadWhitelist()">REFRESH</button>
+</div>
+<div id="whitelistList"></div>
+</div>
+</div>
+
+</div>
+</div>
 </main>
-
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 
 <script>
+"use strict";
+
+const OWNER_EMAIL="itismeditu@gmail.com";
+const OWNER_ID="8d398350-720f-43ae-acdc-1008d295d6b1";
 
 const modes=[
-  "AXE PVP",
-  "CART PVP",
-  "DIA-SMP-KIT",
-  "E-MACE",
-  "NETHPOT",
-  "SMP KIT",
-  "SPEAR MACE",
-  "TANK",
-  "UHC",
-  "VANILLA CRYSTAL"
+ "AXE PVP","CART PVP","DIA-SMP-KIT","E-MACE","NETHPOT",
+ "SMP KIT","SPEAR MACE","TANK","UHC","VANILLA CRYSTAL"
 ];
 
+const points={
+ HT1:150,MT1:140,LT1:130,
+ HT2:120,MT2:110,LT2:100,
+ HT3:90,MT3:80,LT3:70,
+ HT4:60,MT4:50,LT4:40,
+ HT5:30,MT5:20,LT5:10
+};
 
-const sb =
-  window.VOID_SUPABASE &&
-  window.VOID_SUPABASE.url &&
-  window.VOID_SUPABASE.anonKey
-  ? supabase.createClient(
-      window.VOID_SUPABASE.url,
-      window.VOID_SUPABASE.anonKey
-    )
-  : null;
+const sb=window.VOID_SUPABASE?.url && window.VOID_SUPABASE?.anonKey
+ ? supabase.createClient(window.VOID_SUPABASE.url,window.VOID_SUPABASE.anonKey)
+ : null;
 
+let currentUser=null;
+let currentRole=null;
+let players=[];
+let requests=[];
+let whitelist=[];
 
-modes.forEach(m => {
+function el(id){return document.getElementById(id)}
+function esc(s){
+ return String(s??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+ }[c]));
+}
+function message(id,text){
+ el(id).textContent=text;
+ el(id).style.display="block";
+}
+function clearMessage(id){
+ el(id).textContent="";
+ el(id).style.display="none";
+}
 
-  document.getElementById("mode").innerHTML +=
-    `<option>${m}</option>`;
-
-});
-
-
-/* =========================
-   SIGN UP
-========================= */
+function fillModes(){
+ el("mode").innerHTML=modes.map(m=>`<option value="${esc(m)}">${esc(m)}</option>`).join("");
+ el("newMode").innerHTML='<option value="">No change</option>'+modes.map(m=>`<option value="${esc(m)}">${esc(m)}</option>`).join("");
+}
+fillModes();
 
 async function signup(){
+ if(!sb)return alert("Supabase is not configured.");
+ const email=el("email").value.trim().toLowerCase();
+ const password=el("password").value;
+ if(!email||!password)return alert("Enter your email and password.");
+ if(password.length<6)return alert("Password must be at least 6 characters.");
+ if(email===OWNER_EMAIL)return alert("Your Owner account already exists. Please log in.");
 
-  if(!sb)
-    return alert("Configure Supabase first.");
-
-  const e =
-    document.getElementById("email")
-      .value
-      .trim();
-
-  const p =
-    document.getElementById("password")
-      .value;
-
-  if(!e || !p)
-    return alert(
-      "Please enter email and password."
-    );
-
-  const {data,error} =
-    await sb.auth.signUp({
-      email:e,
-      password:p
-    });
-
-  if(error)
-    return alert(
-      "SIGNUP ERROR: "+error.message
-    );
-
-  alert(
-    "Account created! Check your email if confirmation is enabled."
-  );
+ const {error}=await sb.auth.signUp({
+  email,password,
+  options:{emailRedirectTo:location.origin+location.pathname}
+ });
+ if(error)return alert("Registration failed: "+error.message);
+ alert("Registration submitted. If your email is on the Owner's whitelist, check your inbox to verify your account.");
 }
-
-
-/* =========================
-   LOGIN
-========================= */
 
 async function login(){
+ if(!sb)return alert("Supabase is not configured.");
+ const email=el("email").value.trim().toLowerCase();
+ const password=el("password").value;
+ if(!email||!password)return alert("Enter email and password.");
 
-  if(!sb)
-    return alert(
-      "Configure Supabase first."
-    );
-
-  const {
-    data,
-    error
-  } =
-    await sb.auth.signInWithPassword({
-
-      email:
-        document.getElementById("email").value,
-
-      password:
-        document.getElementById("password").value
-
-    });
-
-
-  if(error)
-    return alert(error.message);
-
-  showApp(data.user);
+ const {data,error}=await sb.auth.signInWithPassword({email,password});
+ if(error)return alert(error.message);
+ await showApp(data.user);
 }
-
-
-/* =========================
-   LOGOUT
-========================= */
 
 async function logout(){
+ if(sb)await sb.auth.signOut();
+ location.reload();
+}
 
+async function showApp(user){
+ currentUser=user;
+ el("auth").style.display="none";
+ el("app").style.display="block";
+
+ const {data:roleData,error}=await sb
+  .from("acm_user_roles")
+  .select("role,email")
+  .eq("user_id",user.id)
+  .maybeSingle();
+
+ if(error||!roleData||!["owner","admin"].includes(roleData.role)){
   await sb.auth.signOut();
-
+  alert("Access denied. Your account is not an authorized Owner or Admin.");
   location.reload();
+  return;
+ }
 
+ currentRole=roleData.role;
+
+ if(currentRole==="owner" && user.id!==OWNER_ID){
+  await sb.auth.signOut();
+  alert("Owner account verification failed.");
+  location.reload();
+  return;
+ }
+
+ if(currentRole==="owner" && user.email.toLowerCase()!==OWNER_EMAIL){
+  await sb.auth.signOut();
+  alert("Owner email verification failed.");
+  location.reload();
+  return;
+ }
+
+ el("who").textContent=user.email;
+ el("roleLabel").textContent=currentRole==="owner"?"👑 OWNER — Full authority":"🛡️ ADMIN — Limited authority";
+
+ el("tabWhitelist").style.display=currentRole==="owner"?"inline-block":"none";
+ el("tabRequests").textContent=currentRole==="owner"?"ADMIN REQUESTS":"REQUEST CENTER";
+ el("requestListTitle").textContent=currentRole==="owner"?"Pending Admin Requests":"My Requests";
+
+ el("adminRequestForm").style.display=currentRole==="admin"?"block":"none";
+ el("retiredField").style.display=currentRole==="owner"?"block":"none";
+
+ el("formHeading").textContent=currentRole==="owner"?"➕ Add / Edit Player":"➕ Add New Player";
+ el("formDescription").textContent=currentRole==="owner"
+  ?"You have full control over player records."
+  :"You can add new players. Editing and retirement require Owner approval.";
+
+ el("cancelEdit").style.display="none";
+
+ await Promise.all([loadPlayers(),loadRequests()]);
+ if(currentRole==="owner")await loadWhitelist();
 }
 
-
-/* =========================
-   INIT
-========================= */
-
-async function init(){
-
-  if(!sb)
-    return;
-
-  const {data} =
-    await sb.auth.getSession();
-
-  if(data.session)
-    showApp(data.session.user);
-
+function tab(name){
+ ["players","requests","whitelist"].forEach(x=>{
+  el("section"+x.charAt(0).toUpperCase()+x.slice(1)).classList.toggle("active",x===name);
+  el("tab"+x.charAt(0).toUpperCase()+x.slice(1)).classList.toggle("selected",x===name);
+ });
+ if(name==="requests")loadRequests();
+ if(name==="whitelist"&&currentRole==="owner")loadWhitelist();
 }
 
-
-/* =========================
-   SHOW APP
-========================= */
-
-function showApp(u){
-
-  document.getElementById("auth")
-    .style.display="none";
-
-  document.getElementById("app")
-    .style.display="block";
-
-  document.getElementById("listBox")
-    .style.display="block";
-
-  document.getElementById("who")
-    .textContent=
-      "Signed in as "+u.email;
-
-  loadPlayers();
-
+function resetForm(){
+ el("playerId").value="";
+ el("name").value="";
+ el("tier").value="HT1";
+ el("tests").value="0";
+ el("retired").value="false";
+ el("formHeading").textContent=currentRole==="owner"?"➕ Add / Edit Player":"➕ Add New Player";
+ el("cancelEdit").style.display="none";
+ el("playerMsg").style.display="none";
 }
-
-
-/* =========================
-   SAVE PLAYER
-========================= */
 
 async function savePlayer(){
+ if(!currentUser)return;
+ const name=el("name").value.trim();
+ const mode=el("mode").value;
+ const tier=el("tier").value;
+ const tests=Number(el("tests").value||0);
+ const id=el("playerId").value;
 
-  const name =
-    document.getElementById("name")
-      .value
-      .trim();
+ if(!name)return message("playerMsg","Enter a player name.");
+ if(!Number.isInteger(tests)||tests<0)return message("playerMsg","Tests must be a non-negative whole number.");
 
+ const retired=currentRole==="owner" && el("retired").value==="true";
 
-  if(!name)
-    return alert(
-      "Enter a player name."
-    );
+ const row={
+  name,mode,tier,
+  points:points[tier],
+  tests,
+  retired,
+  icon:"👤"
+ };
 
+ let result;
 
-  const retired =
-    document.getElementById("retired")
-      .checked;
+ if(id){
+  if(currentRole!=="owner")return message("playerMsg","Only the Owner can edit players.");
+  result=await sb.from("players").update(row).eq("id",id);
+ }else{
+  // INSERT only. Never use upsert for Admins.
+  result=await sb.from("players").insert(row);
+ }
 
+ if(result.error)return message("playerMsg",result.error.message);
 
-  const row={
-
-    name:name,
-
-    mode:
-      document.getElementById("mode").value,
-
-    tier:
-      document.getElementById("tier").value,
-
-    retired:retired,
-
-    icon:"👤"
-
-  };
-
-
-  const {error} =
-    await sb
-      .from("players")
-      .upsert(
-        row,
-        {
-          onConflict:"name,mode"
-        }
-      );
-
-
-  if(error)
-    return show(error.message);
-
-
-  show(
-    retired
-      ? "✅ Player published as RETIRED!"
-      : "✅ Player published!"
-  );
-
-
-  document.getElementById("name")
-    .value="";
-
-  document.getElementById("retired")
-    .checked=false;
-
-  loadPlayers();
-
+ message("playerMsg",id?"Player updated successfully!":"Player published successfully!");
+ resetForm();
+ await loadPlayers();
 }
-
-
-/* =========================
-   LOAD PLAYERS
-========================= */
 
 async function loadPlayers(){
+ if(!sb)return;
+ const {data,error}=await sb.from("players").select("*").order("name",{ascending:true});
+ if(error)return console.error(error);
+ players=data||[];
 
-  const {
-    data,
-    error
-  } =
-    await sb
-      .from("players")
-      .select("*")
-      .order(
-        "name",
-        {
-          ascending:true
-        }
-      );
+ el("list").innerHTML=players.map(p=>`
+ <div class="box player-card">
+  <b>${esc(p.name)}</b><br>
+  <span class="muted">${esc(p.mode)} • <span class="player-tier">${esc(p.tier)}</span></span><br>
+  <span class="retired-status ${p.retired?"retired":"active"}">${p.retired?"🏁 RETIRED":"● ACTIVE"}</span>
+  ${currentRole==="owner"?`
+   <div style="margin-top:10px">
+    <button onclick="editPlayer(${Number(p.id)})">EDIT</button>
+    <button class="gray" onclick="toggleRetired(${Number(p.id)},${!p.retired})">${p.retired?"SET ACTIVE":"RETIRE"}</button>
+    <button class="red" onclick="delPlayer(${Number(p.id)})">DELETE</button>
+   </div>
+  `:""}
+ </div>
+ `).join("")||'<p class="muted">No players found.</p>';
 
-
-  if(error)
-    return show(error.message);
-
-
-  document.getElementById("list")
-    .innerHTML=
-      (data || [])
-        .map(p => `
-
-          <div class="box player-card">
-
-            <b>
-              ${esc(p.name)}
-            </b>
-
-            <br>
-
-            <span class="muted">
-              ${esc(p.mode)} •
-              <span class="player-tier">
-                ${displayTier(p)}
-              </span>
-            </span>
-
-            <br>
-
-            <span class="
-              retired-status
-              ${p.retired ? "retired" : "active"}
-            ">
-
-              ${p.retired
-                ? "🏁 RETIRED"
-                : "● ACTIVE"}
-
-            </span>
-
-            <br>
-
-            <button
-              class="${p.retired ? "gray" : ""}"
-              onclick="toggleRetired('${p.id}',${!p.retired})"
-            >
-              ${p.retired
-                ? "↩️ Set Active"
-                : "🏁 Retire Player"}
-            </button>
-
-            <button
-              class="red"
-              onclick="del('${p.id}')"
-            >
-              Delete
-            </button>
-
-          </div>
-
-        `)
-        .join("");
-
+ el("requestPlayer").innerHTML=players.map(p=>
+  `<option value="${Number(p.id)}">${esc(p.name)} — ${esc(p.mode)} (${esc(p.tier)})</option>`
+ ).join("");
 }
 
+function editPlayer(id){
+ if(currentRole!=="owner")return;
+ const p=players.find(x=>Number(x.id)===Number(id));
+ if(!p)return;
 
-/* =========================
-   DISPLAY TIER
-========================= */
-
-function displayTier(player){
-
-  const tier =
-    String(player.tier || "")
-      .replace(/^R-/i,"");
-
-  return player.retired
-    ? "R-"+tier
-    : tier;
-
+ el("playerId").value=p.id;
+ el("name").value=p.name;
+ el("mode").value=p.mode;
+ el("tier").value=p.tier;
+ el("tests").value=p.tests??0;
+ el("retired").value=p.retired?"true":"false";
+ el("formHeading").textContent="✏️ Edit Player";
+ el("cancelEdit").style.display="inline-block";
+ el("playerMsg").style.display="none";
+ window.scrollTo({top:0,behavior:"smooth"});
 }
-
-
-/* =========================
-   TOGGLE RETIRED
-========================= */
 
 async function toggleRetired(id,status){
+ if(currentRole!=="owner")return alert("Only the Owner can retire or unretire players.");
+ if(!confirm(status?"Retire this player?":"Set this player as active?"))return;
 
-  const {error} =
-    await sb
-      .from("players")
-      .update({
-        retired:status
-      })
-      .eq("id",id);
-
-
-  if(error)
-    return show(error.message);
-
-
-  show(
-    status
-      ? "🏁 Player marked as RETIRED!"
-      : "✅ Player set to ACTIVE!"
-  );
-
-
-  loadPlayers();
-
+ const {error}=await sb.from("players").update({retired:status}).eq("id",id);
+ if(error)return alert(error.message);
+ await loadPlayers();
 }
 
+async function delPlayer(id){
+ if(currentRole!=="owner")return alert("Only the Owner can delete players.");
+ if(!confirm("Permanently delete this player?"))return;
 
-/* =========================
-   DELETE
-========================= */
-
-async function del(id){
-
-  if(
-    !confirm(
-      "Delete this player?"
-    )
-  )
-    return;
-
-
-  const {error} =
-    await sb
-      .from("players")
-      .delete()
-      .eq("id",id);
-
-
-  if(error)
-    return show(error.message);
-
-
-  loadPlayers();
-
+ const {error}=await sb.from("players").delete().eq("id",id);
+ if(error)return alert(error.message);
+ await loadPlayers();
 }
 
-
-/* =========================
-   MESSAGE
-========================= */
-
-function show(x){
-
-  const m =
-    document.getElementById("msg");
-
-  m.textContent=x;
-
-  m.style.display="block";
-
+function requestTypeChanged(){
+ const isEdit=el("requestType").value==="edit";
+ el("editFields").style.display=isEdit?"block":"none";
+ el("retireFields").style.display=isEdit?"none":"block";
 }
 
+async function submitRequest(){
+ if(currentRole!=="admin")return alert("Only Admins can submit requests.");
 
-/* =========================
-   ESCAPE HTML
-========================= */
+ const id=Number(el("requestPlayer").value);
+ const p=players.find(x=>Number(x.id)===id);
+ if(!p)return message("requestMsg","Select a valid player.");
 
-function esc(s){
+ const type=el("requestType").value;
+ const reason=el("requestReason").value.trim();
+ if(reason.length<10)return message("requestMsg","Please provide a proper reason (at least 10 characters).");
 
-  return String(s ?? "")
-    .replace(
-      /[&<>"']/g,
-      c =>
-        ({
-          "&":"&amp;",
-          "<":"&lt;",
-          ">":"&gt;",
-          '"':"&quot;",
-          "'":"&#039;"
-        }[c])
-    );
+ let proposed={};
 
+ if(type==="edit"){
+  if(el("newName").value.trim())proposed.name=el("newName").value.trim();
+  if(el("newMode").value)proposed.mode=el("newMode").value;
+  if(el("newTier").value){
+   proposed.tier=el("newTier").value;
+   proposed.points=points[proposed.tier];
+  }
+  if(el("newTests").value!==""){
+   const n=Number(el("newTests").value);
+   if(!Number.isInteger(n)||n<0)return message("requestMsg","Tests must be a non-negative whole number.");
+   proposed.tests=n;
+  }
+  if(!Object.keys(proposed).length)return message("requestMsg","Choose at least one change.");
+ }else{
+  proposed.retired=el("retireValue").value==="true";
+  if(proposed.retired===!!p.retired)return message("requestMsg","This player already has that retirement status.");
+ }
+
+ const {error}=await sb.from("acm_admin_requests").insert({
+  requester_id:currentUser.id,
+  requester_email:currentUser.email,
+  request_type:type,
+  player_id:p.id,
+  player_name:p.name,
+  reason,
+  proposed_changes:proposed,
+  status:"pending"
+ });
+
+ if(error)return message("requestMsg",error.message);
+
+ message("requestMsg","Request submitted! It will not change the leaderboard until the Owner approves it.");
+
+ el("requestReason").value="";
+ el("newName").value="";
+ el("newMode").value="";
+ el("newTier").value="";
+ el("newTests").value="";
+ await loadRequests();
 }
 
+async function loadRequests(){
+ if(!sb||!currentUser)return;
 
-/* =========================
-   START
-========================= */
+ let query=sb.from("acm_admin_requests").select("*").order("created_at",{ascending:false});
+ if(currentRole==="admin")query=query.eq("requester_id",currentUser.id);
+
+ const {data,error}=await query;
+ if(error){
+  el("requestList").textContent=error.message;
+  return;
+ }
+
+ requests=data||[];
+ const pending=currentRole==="owner"?requests.filter(r=>r.status==="pending"):requests;
+
+ el("requestList").innerHTML=requests.map(r=>{
+  const changes=Object.entries(r.proposed_changes||{})
+   .map(([k,v])=>`<div class="change-line"><b>${esc(k)}:</b> ${esc(v)}</div>`).join("");
+
+  return `
+  <div class="request-card">
+   <div class="row">
+    <b>${r.request_type==="edit"?"✏️ Player Edit":"🏁 Player Retirement"}</b>
+    <span class="tag ${esc(r.status)}">${esc(r.status.toUpperCase())}</span>
+   </div>
+   <p><b>Player:</b> ${esc(r.player_name)}</p>
+   ${currentRole==="owner"?`<p class="muted">Admin: ${esc(r.requester_email)}</p>`:""}
+   <p><b>Reason:</b> ${esc(r.reason)}</p>
+   <div>${changes}</div>
+   <p class="small">Submitted: ${esc(new Date(r.created_at).toLocaleString())}</p>
+   ${r.owner_note?`<p><b>Owner note:</b> ${esc(r.owner_note)}</p>`:""}
+   ${currentRole==="owner"&&r.status==="pending"?`
+    <label class="field-label">Decision note (optional)</label>
+    <input id="note_${r.id}" placeholder="Explain your decision">
+    <button class="green" onclick="reviewRequest('${r.id}','approve')">APPROVE</button>
+    <button class="red" onclick="reviewRequest('${r.id}','reject')">REJECT</button>
+   `:""}
+   ${r.status==="pending"&&currentRole==="admin"?'<span class="muted">Waiting for Owner approval.</span>':""}
+  </div>`;
+ }).join("")||'<p class="muted">No requests found.</p>';
+}
+
+async function reviewRequest(id,decision){
+ if(currentRole!=="owner")return alert("Only the Owner can review requests.");
+ const note=el("note_"+id)?.value.trim()||null;
+
+ if(!confirm(decision==="approve"?"Approve this request and apply its changes?":"Reject this request?"))return;
+
+ const functionName=decision==="approve"?"acm_approve_request":"acm_reject_request";
+ const {data,error}=await sb.rpc(functionName,{
+  p_request_id:id,
+  p_owner_note:note
+ });
+
+ if(error)return alert("Request action failed: "+error.message);
+ if(!data?.success)return alert("The request could not be processed.");
+
+ alert("Request "+decision+"d successfully.");
+ await Promise.all([loadRequests(),loadPlayers()]);
+}
+
+async function addAdmin(){
+ if(currentRole!=="owner")return alert("Owner access required.");
+ const email=el("adminEmail").value.trim().toLowerCase();
+ if(!email||!email.includes("@"))return message("whitelistMsg","Enter a valid email.");
+ if(email===OWNER_EMAIL)return message("whitelistMsg","Your Owner email does not need to be whitelisted.");
+
+ const {error}=await sb.from("acm_admin_whitelist").insert({email,added_by:currentUser.id});
+ if(error)return message("whitelistMsg",error.message);
+
+ el("adminEmail").value="";
+ message("whitelistMsg","Admin email authorized. The person can now register using this email.");
+ await loadWhitelist();
+}
+
+async function removeAdmin(email){
+ if(currentRole!=="owner")return;
+ if(email===OWNER_EMAIL)return alert("You cannot remove the Owner.");
+ if(!confirm("Remove "+email+" from the Admin whitelist? Their Admin role will also be revoked."))return;
+
+ const {error}=await sb.from("acm_admin_whitelist").delete().eq("email",email);
+ if(error)return alert(error.message);
+ await loadWhitelist();
+}
+
+async function loadWhitelist(){
+ if(currentRole!=="owner")return;
+
+ const {data,error}=await sb.from("acm_admin_whitelist").select("*").order("email");
+ if(error){
+  el("whitelistList").textContent=error.message;
+  return;
+ }
+ whitelist=data||[];
+
+ el("whitelistList").innerHTML=whitelist.map(a=>`
+  <div class="request-card row">
+   <div><b>${esc(a.email)}</b><div class="muted">Authorized Admin</div></div>
+   <button class="red" onclick="removeAdmin('${esc(a.email)}')">REMOVE</button>
+  </div>
+ `).join("")||'<p class="muted">No Admins authorized yet.</p>';
+}
+
+async function init(){
+ if(!sb){
+  el("authMsg").style.display="block";
+  el("authMsg").textContent="Supabase configuration missing. Check supabase-config.js.";
+  return;
+ }
+
+ const {data,error}=await sb.auth.getSession();
+ if(error)return;
+
+ if(data.session)await showApp(data.session.user);
+
+ sb.auth.onAuthStateChange((event,session)=>{
+  if(event==="SIGNED_OUT"){
+   currentUser=null;
+   currentRole=null;
+   location.reload();
+  }
+ });
+}
 
 init();
-
 </script>
-
 </body>
 </html>
